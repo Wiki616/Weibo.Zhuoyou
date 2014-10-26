@@ -9,8 +9,8 @@ import uuid
 @app.route('/index')
 def index():
         return render_template("index.html")
-@app.route('/settings')
-@app.route('/settings/profile')
+@app.route('/settings',methods=['POST','GET'])
+@app.route('/settings/profile',methods=['POST','GET'])
 def profile():
         return render_template("profile.html")
 @app.route('/settings/account')

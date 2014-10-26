@@ -9,3 +9,13 @@ import uuid
 @app.route('/index')
 def index():
         return render_template("index.html")
+@app.route('/settings')
+@app.route('/settings/profile')
+def profile():
+        return render_template("profile.html")
+@app.route('/settings/account')
+def account():
+        return render_template("account.html")
+@app.route('/settings/friend')
+def friend():
+        return render_template("friend.html")

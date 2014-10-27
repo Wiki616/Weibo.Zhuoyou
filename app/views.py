@@ -14,8 +14,13 @@ def index():
 @app.route('/settings/profile',methods=['POST','GET'])
 def profile():
         error = None
+<<<<<<< HEAD
         cookie = request.cookies.get('username')
         if (cookie == resp.
+=======
+        #cookie = request.cookies.get('username')
+        #if (cookie == resp.
+>>>>>>> d13fdbf11e018e7c6e6afdf21ddcb3772b73dbb0
         if request.method == 'POST':
                 resp = make_response(render_template('index.html'))
                 resp.set_cookie('username',request.form['username'])
@@ -45,3 +50,9 @@ def update():
                 ret = request.form['nickname']
                 return render_template("profile.html",nickname=ret)
         return render_template("profile.html")
+<<<<<<< HEAD
+=======
+@app.route('/home',methods=['POST','GET'])
+def home():
+        return render_template("home.html")
+>>>>>>> d13fdbf11e018e7c6e6afdf21ddcb3772b73dbb0

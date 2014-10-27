@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect,request
+from flask import render_template, flash, redirect,request,make_response
 from app import app
 import httplib
 import urllib , urllib2
@@ -12,7 +12,13 @@ def index():
 @app.route('/settings',methods=['POST','GET'])
 @app.route('/settings/profile',methods=['POST','GET'])
 def profile():
-        return render_template("profile.html")
+        error = None
+        if request.method == 'POST':
+                resp = make_response(render_template('index.html'))
+                resp.set_cookie('username',request.form['username'])
+                resp.set_cookie('nickname',request.form['nickname'])
+                return render_template("profile.html",nickname=request.form['nickname'])
+        return render_template("profile.html",nickname='null')
 @app.route('/settings/account')
 def account():
         return render_template("account.html")

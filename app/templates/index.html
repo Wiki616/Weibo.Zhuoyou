@@ -83,24 +83,23 @@
 				</div>
 				-->
 			</div>
-
-			<div class="row">
-				<div class="col-md-3 col-md-offset-8">
-					<div class="form-group">
-						<div class="input-group">
-							<div class="input-group-addon">用户名</div>
-							<input class="form-control" type="text" placeholder="Enter username">
-						</div>
-					</div>
-				</div>
-			</div>
 			<form action = "/settings" method="POST">
 			<div class="row">
 				<div class="col-md-3 col-md-offset-8">
 					<div class="form-group">
 						<div class="input-group">
+							<div class="input-group-addon">用户名</div>
+							<input class="form-control" name = "username" type="text" placeholder="Enter username">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 col-md-offset-8">
+					<div class="form-group">
+						<div class="input-group">
 							<div class="input-group-addon">昵 称</div>
-							<input class="form-control" type="text" placeholder="Enter nickname">
+							<input class="form-control" name = "nickname" type="text" placeholder="Enter nickname">
 						</div>
 					</div>
 				</div>
@@ -110,7 +109,7 @@
 					<div class="form-group">
 						<div class="input-group">
 							<div class="input-group-addon">密 码</div>
-							<input class="form-control" type="password" placeholder="Enter password">
+							<input class="form-control" name = "password" type="password" placeholder="Enter password">
 						</div>
 					</div>
 				</div>

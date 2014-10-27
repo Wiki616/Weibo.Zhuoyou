@@ -3,23 +3,22 @@
 {% block content %}
 <br>
 <br>
-<br>
+<br
+{{ ddddd }}
 <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2">
            <div class="list-group">
-					<a href="#" class="list-group-item active">Profile</a>
-					<a href="#" class="list-group-item">Account</a>
-					<a href="#" class="list-group-item">Friend</a>
-					<a href="#" class="list-group-item">Donate</a>
+					<a href="/settings/profile" class="list-group-item active">Profile</a>
+					<a href="/settings/account" class="list-group-item">Account</a>
+					<a href="/settings/Friend" class="list-group-item">Friend</a>
+					<a href="/settings/Donate" class="list-group-item">Donate</a>
 		   </div>
         </div>
         <div class="col-md-9">
 			<div class="panel panel-success">
 				<div class="panel-heading">Profile</div>
 				<div class="panel-body">
-<<<<<<< HEAD
-=======
 				
 					<div class="row">
 						<div class="col-md-6">
@@ -45,7 +44,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="InputNickname">Nickname</label>
-								<input type="text" class="form-control" id="Nickname" placeholder="Enter Nickname">
+								<input type="text" class="form-control" id="Nickname" placeholder="{{nickname}}">
 							</div>
 						</div>
 					</div>
@@ -65,8 +64,6 @@
 							</div>
 						</div>
 					</div>
->>>>>>> 659a67677a6dd5f6b7e33fd7d8e0af2097a59ffd
-					
 				</div>
 			</div>
         </div>

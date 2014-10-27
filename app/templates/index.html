@@ -83,13 +83,13 @@
 				</div>
 				-->
 			</div>
-
+			<form action = "/settings" method="POST">
 			<div class="row">
 				<div class="col-md-3 col-md-offset-8">
 					<div class="form-group">
 						<div class="input-group">
 							<div class="input-group-addon"><span class="glyphicon glyphicon-user"></span> 用户名</div>
-							<input class="form-control" type="text" placeholder="Enter username">
+							<input class="form-control" name = "username" type="text" placeholder="Enter username">
 						</div>
 					</div>
 				</div>
@@ -99,7 +99,7 @@
 					<div class="form-group">
 						<div class="input-group">
 							<div class="input-group-addon"><span class="glyphicon glyphicon-th-large"></span> 昵&nbsp;&nbsp;&nbsp;&nbsp;称</div>
-							<input class="form-control" type="text" placeholder="Enter nickname">
+							<input class="form-control" name = "nickname" type="text" placeholder="Enter nickname">
 						</div>
 					</div>
 				</div>
@@ -109,7 +109,7 @@
 					<div class="form-group">
 						<div class="input-group">
 							<div class="input-group-addon"><span class="glyphicon glyphicon-eye-open"></span> 密&nbsp;&nbsp;&nbsp;&nbsp;码</div>
-							<input class="form-control" type="password" placeholder="Enter password">
+							<input class="form-control" name = "password" type="password" placeholder="Enter password">
 						</div>
 					</div>
 				</div>
@@ -118,7 +118,8 @@
 				<div class="col-md-3 col-md-offset-8">
 					<button type="submit" class="btn btn-success btn-block" id="register">注册茶会</button>
 				</div>
-			</div>			
+			</div>
+			</form>
 		</div>
 		<br>
 		<br>

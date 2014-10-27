@@ -45,6 +45,6 @@ def update():
                 ret = request.form['nickname']
                 return render_template("profile.html",nickname=ret)
         return render_template("profile.html")
-@app.route('/talk',methods=['POST','GET'])
-def talk():
-        return render_template("talk.html")
+@app.route('/home',methods=['POST','GET'])
+def home():
+        return render_template("home.html")

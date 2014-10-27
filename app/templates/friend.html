@@ -1,5 +1,82 @@
 {% extends "base.html" %}
 
 {% block content %}
+<br>
+<br>
+<br>
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2">
+           <div class="list-group">
+					<a href="#" class="list-group-item">Profile</a>
+					<a href="#" class="list-group-item">Account</a>
+					<a href="#" class="list-group-item active">Friend</a>
+					<a href="#" class="list-group-item">Donate</a>
+		   </div>
+        </div>
+        <div class="col-md-9">
+			<div class="panel panel-success">
+				<div class="panel-heading">Friend</div>
+				<div class="panel-body">
+
+					<ul class="nav nav-tabs" role="tablist">
+					  <li role="presentation" class="active"><a href="#">ALL<span class="badge">1</span></a></li>
+					  <li role="presentation"><a href="#">Classmate</a></li>
+					  <li role="presentation"><a href="#">Family</a></li>
+					</ul>
+				
+					<div class="row">
+					  <div class="col-sm-6 col-md-4">
+					  
+						<div class="thumbnail">
+							
+							<div class="row">
+								<div class="col-md-4">
+									<!--Profile picture-->
+									<img src="/static/pic/icon.jpg" height="96" width="96"></img>
+								</div>
+								<div class="col-md-8">
+									<div class="col-md-5">
+										<label for="friendcard" id="nickname"><b><h5>Jubin</h5></b></label>
+									</div>
+									
+									<div class="col-md-7">
+										<div class="dropdown">
+											<button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+												Groups
+												<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" id="friendlist">
+												<li role="presentation"  class="disabled"><a role="menuitem" tabindex="-1" href="#">ALL</a></li>
+												<li role="presentation" class="divider"></li>
+												<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Classmate</a></li>
+												<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Family</a></li>
+											</ul>
+										</div>
+									</div>
+									
+									<div class="col-md-12">
+											<label for="friendcard" id="email"><h5><small><span class="glyphicon glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;605276362@qq.com</small></h5></label>
+									</div>
+									
+									<div class="row">
+										<div class="col-md-8 col-md-offset-3">
+											<button type="submit" class="btn btn-primary btn-block" id="Unfollow"><span class="glyphicon glyphicon-eye-close"></span>&nbsp;&nbsp; Unfollow</button>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+							
+						</div>
+					  </div>
+					</div>
+
+				</div>
+			</div>
+        </div>
+      </div>
+    </div>
+
 
 {% endblock %}

@@ -56,15 +56,15 @@
 			<a class="navbar-brand" href="/"><img src="/static/pic/icon.jpg" height="30" width="30"></img>桌友茶会beta</a>
 			</div>
 			<div class="navbar-collapse collapse">
-				<form class="navbar-form navbar-right" role="form">
-				<div class="form-group">
-					<input type="text" placeholder="用户名" class="form-control">
-				</div>
-				<div class="form-group">
-					<input type="password" placeholder="密码" class="form-control">
-				</div>
-				<button type="submit" class="btn btn-success">Sign in</button>
-			</form>
+				<form class="navbar-form navbar-right" role="form" action = "/home" method="post">
+					<div class="form-group">
+						<input type="text" name = "username2" placeholder="用户名" class="form-control">
+					</div>
+					<div class="form-group">
+						<input type="password" name = "password2" placeholder="密码" class="form-control">
+					</div>
+					<button type="submit" class="btn btn-success">Sign in</button>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -83,7 +83,7 @@
 				</div>
 				-->
 			</div>
-			<form action = "/settings" method="POST">
+			<form action = "/welcome" method="POST">
 			<div class="row">
 				<div class="col-md-3 col-md-offset-8">
 					<div class="form-group">

@@ -10,11 +10,10 @@ $(function() {
 	function updateinfo() {
 		var post = [nickname=Nickname,email=Email];
 		var url = "/update";
-		location.href = url;
+		//location.href = url;
 		$.ajax({
             type : "POST",
-            url : newurl,
-            dataType : "jsonp",
+            url : url,
 			data : post,
             success: function(msg) {
                         alert("Ok!")

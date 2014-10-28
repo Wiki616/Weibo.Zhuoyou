@@ -10,22 +10,8 @@ import hashlib
 @app.route('/index')
 def index():
         return render_template("index.html")
-<<<<<<< HEAD
-@app.route('/settings',methods=['POST','GET'])
-@app.route('/settings/profile',methods=['POST','GET'])
-def profile():
-        error = None
-<<<<<<< HEAD
-        cookie = request.cookies.get('username')
-        if (cookie == resp.
-=======
-        #cookie = request.cookies.get('username')
-        #if (cookie == resp.
->>>>>>> d13fdbf11e018e7c6e6afdf21ddcb3772b73dbb0
-=======
 @app.route('/welcome',methods=['POST','GET'])
 def welcome():
->>>>>>> 803f2e15234c4c893ec63498a6a5d8f283b2db25
         if request.method == 'POST':
                 resp = make_response(render_template('index.html'))
                 resp.set_cookie('username',request.form['username'])
@@ -59,15 +45,6 @@ def update():
         if request.method == 'POST':
                 ret = request.form['nickname']
                 return render_template("profile.html",nickname=ret)
-<<<<<<< HEAD
-        return render_template("profile.html")
-<<<<<<< HEAD
-=======
-@app.route('/home',methods=['POST','GET'])
-def home():
-        return render_template("home.html")
->>>>>>> d13fdbf11e018e7c6e6afdf21ddcb3772b73dbb0
-=======
         return render_template("error.html")
 @app.route('/home',methods=['POST','GET'])
 def home():
@@ -83,4 +60,3 @@ def home():
                         return render_template("home.html",nickname=miss.nickname)
                 return render_template("error.html")
         return render_template("error.html")
->>>>>>> 803f2e15234c4c893ec63498a6a5d8f283b2db25

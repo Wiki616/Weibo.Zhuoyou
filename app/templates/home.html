@@ -12,7 +12,7 @@
 				<div class="row">
 					<div class="col-md-11 col-md-offset-1">
 						<!--Profile picture-->
-						<h3>Wiki_ki {{ nickname }}</h3>
+						<h3>{{ nickname }}</h3>
 						<h4>ZhuWeiKai {{username}}</h4>
 					</div>	
 					<div class="col-md-11 col-md-offset-1">
@@ -57,7 +57,7 @@
 					<p class="text-center"><h4><small>I want to say:</small></h4></p>
 				</div>
 				<div class="col-md-12">
-					<textarea class="form-control" rows="4"></textarea>
+					<textarea class="form-control" rows="4" id = "weibo"></textarea>
 				</div>
 				<div class="col-md-2">
 						<button class="btn btn-default btn-block" type="button" "><span class="glyphicon glyphicon-camera"></span> Picture</span></button>
@@ -66,7 +66,7 @@
 					<p class="text-center"><h5><small>You can share your new topic with picture!</small></h5></p>
 				</div>
 				<div class="col-md-2">
-						<button class="btn btn-info btn-block" type="button">Share it!</button>
+						<button class="btn btn-info btn-block" type="button" id = "Share">Share it!</button>
 				</div>
 			</div>
 			</br>
@@ -82,7 +82,7 @@
 				</div>
 			</div>
 			</br>
-			<div class = "container">
+			<div class = "container" id = "bigtable">
 				<div class = "row">
 					<div class="col-md-7">
 						<div class="thumbnail">	

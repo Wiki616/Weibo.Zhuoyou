@@ -39,11 +39,12 @@
 						</div>
 					</div>
 					</br>
+					<form action="/update" method="post">
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="InputNickname">Nickname</label>
-								<input type="text" class="form-control" id="Nickname" placeholder="{{nickname}}">
+								<input type="text" name = "nickname" class="form-control" id="Nickname" placeholder="{{nickname}}">
 							</div>
 						</div>
 					</div>
@@ -51,7 +52,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="InputEmail">Email address</label>
-								<input type="email" class="form-control" id="Email" placeholder="Enter email">
+								<input type="email" name = "email" class="form-control" id="Email" placeholder="Enter email">
 							</div>
 						</div>
 					</div>
@@ -63,6 +64,7 @@
 							</div>
 						</div>
 					</div>
+					</form>
 				</div>
 			</div>
         </div>

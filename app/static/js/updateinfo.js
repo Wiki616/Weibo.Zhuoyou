@@ -4,12 +4,13 @@ $(function() {
 		updateinfo();
 	});
 
+	var Username = $.cookie('username')
 	var Nickname = $('#Nickname').attr('value');
 	var Email = $('#Email').attr('value')
 	
 	function updateinfo() {
-		var post = [nickname=Nickname,email=Email];
-		var url = "/update";
+		var post = [uesrname = Username,nickname=Nickname,email=Email];
+		var url = "/update1";
 		//location.href = url;
 		$.ajax({
             type : "POST",

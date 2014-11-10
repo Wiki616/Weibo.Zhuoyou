@@ -12,7 +12,7 @@
 					<a href="/settings/profile" class="list-group-item">Profile</a>
 					<a href="/settings/account" class="list-group-item active">Account</a>
 					<a href="/settings/following" class="list-group-item">Following</a>
-					<a href="/settings/Donate" class="list-group-item">Donate</a>
+					<a href="/settings/donate" class="list-group-item">Donate</a>
 		   </div>
         </div>
         <div class="col-md-9">
@@ -21,11 +21,12 @@
 				<div class="panel-body">
 
 					</br>
+					<form action = "/update2" method = "post">
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="InputOld_password">Old password</label>
-								<input type="password" class="form-control" id="Old_password" placeholder="Enter old password">
+								<input type="password" name = "oldpassword" class="form-control" id="Old_password" placeholder="Enter old password">
 							</div>
 						</div>
 					</div>
@@ -33,7 +34,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="InputNew_password">New password</label>
-								<input type="password" class="form-control" id="New_password" placeholder="Enter new password">
+								<input type="password" name = "newpassword" class="form-control" id="New_password" placeholder="Enter new password">
 							</div>
 						</div>
 					</div>
@@ -41,7 +42,7 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="InputConfirm_password">Confirm new password</label>
-								<input type="password" class="form-control" id="Confirm_password" placeholder="Enter confirm password">
+								<input type="password" name = "newpassword2" class="form-control" id="Confirm_password" placeholder="Enter confirm password">
 							</div>
 						</div>
 					</div>
@@ -53,7 +54,7 @@
 							</div>
 						</div>
 					</div>
-					
+					</form>
 				</div>
 			</div>
         </div>

@@ -16,13 +16,10 @@ def convertmd5(origin):
 @app.route('/index')
 def index():
         return render_template("index.html")
-<<<<<<< HEAD
-=======
 @app.route('/logout')
 def logout():
         session.pop('username',None)
         return render_template("index.html")
->>>>>>> 2b01c01bc2cf05b2b7a35c7a9017d9ffdf4c69f6
 @app.route('/welcome',methods=['POST','GET'])
 def welcome():
         if request.method == 'POST':
@@ -59,10 +56,6 @@ def donate():
 @app.route('/update1',methods=['POST','GET'])
 def update1():
         if request.method == 'POST':
-<<<<<<< HEAD
-                ret = request.form['nickname']
-                return render_template("profile.html",nickname=ret)
-=======
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
                 ret.nickname = request.form['nickname']
@@ -82,7 +75,6 @@ def update2():
                         db.session.commit()
                         return render_template("update.html")
                 return render_template("error.html")
->>>>>>> 2b01c01bc2cf05b2b7a35c7a9017d9ffdf4c69f6
         return render_template("error.html")
 @app.route('/home',methods=['POST','GET'])
 def home():
@@ -93,11 +85,7 @@ def home():
                 if psw == miss.password:
                         return render_template("home.html",nickname=miss.nickname)
                 return render_template("error.html")
-<<<<<<< HEAD
-        return render_template("error.html")
-=======
         if 'username' in session:
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
                 return render_template("home.html",nickname=ret.nickname)
->>>>>>> 2b01c01bc2cf05b2b7a35c7a9017d9ffdf4c69f6

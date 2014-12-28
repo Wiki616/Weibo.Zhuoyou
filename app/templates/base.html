@@ -53,9 +53,29 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/settings/profile"><img src="/static/pic/icon.jpg" height="30" width="30"></img> 桌友茶会beta</a>
+			<a class="navbar-brand" href="/home"><img src="/static/pic/icon.jpg" height="26" width="26"></img> 桌友茶会beta</a>
 		</div>
-		<p class="navbar-text navbar-right">Hello , <a href="/home" class="navbar-link" id = "Nick">{{ nickname }}</a>!&nbsp;&nbsp;&nbsp;&nbsp;<a href="/logout" class="navbar-link"><span class="glyphicon glyphicon-log-out"></span> logout</a></p>
+		
+		<p class="navbar-text navbar-left">
+			&nbsp;&nbsp;&nbsp;&nbsp;<a href="/home" class="navbar-link"><span class="glyphicon glyphicon-cloud"></span>&nbsp;Weibo Square</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		</p>
+		
+		<p class="navbar-text navbar-right">
+			<span class="glyphicon glyphicon-user"></span><a href="/settings/profile" class="navbar-link" id = "Nick">&nbsp;{{ nickname }}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="/home" class="navbar-link"><span class="glyphicon glyphicon glyphicon-home"></span> Personal page</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="/message" class="navbar-link"><span class="glyphicon glyphicon-envelope"></span> Message&nbsp;<span class="badge">2</span></a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="/logout" class="navbar-link"><span class="glyphicon glyphicon-log-out"></span> Sign out</a>
+		</p>
+		
+		<form class="navbar-form navbar-right" role="search">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Search friend or Weibo"> 
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span>&nbsp;Search</button>
+				</span>
+			</div><!-- /input-group -->&nbsp;&nbsp;&nbsp;&nbsp;
+		</form>
+		
 	</div>
 </div>
 

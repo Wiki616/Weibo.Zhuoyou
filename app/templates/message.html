@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-md-9 col-md-offset-2">
+			<div class="panel panel-success">
+				<div class="panel-heading">Message</div>
+				<div class="panel-body">
+
+					<ul class="nav nav-tabs" role="tablist">
+					  <li role="presentation"><a href="#">@me <span class="badge" id="friendnum">1</span></a></li>
+					  <li role="presentation"><a href="#">Commit <span class="badge" id="friendnum">2</span></a></li>
+					  <li role="presentation" class="active"><a href="#">Personal letter</a></li>
+					</ul>
+					
+					</br>
+					
+					<div class="row">
+					  <div class="col-md-12">
+					  
+					    <div class="thumbnail">							
+							<div class="row">
+								<div class="col-md-1">
+									<!--Profile picture-->
+									<img src="/static/pic/icon.jpg" height="80" width="80"></img>
+								</div>
+								<div class="col-md-11">
+									<div class="col-md-4">
+										<!--<img src="/static/pic/icon.jpg" height="16" width="16"></img>-->
+										<label for="friendcard" id="nickname"><b><h5>系统消息</h5></b></label>
+									</div>
+									<div class="col-md-2 col-md-offset-6">
+											<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+									</div>
+									<div class="col-md-12">
+											<label for="friendcard" id="email"><h5><small>&nbsp;感谢你参与桌友茶会beta版测试！系统特将赠送永久VIP！</small></h5></label>
+									</div>
+								</div>
+								<div class="col-md-2 col-md-offset-10">
+									<p class="text-center"><h5><small>2014-10-23 10:24</small></h5></p>
+								</div>
+							</div>	
+						</div>
+
+						<div class="thumbnail">							
+							<div class="row">
+								<div class="col-md-1">
+									<!--Profile picture-->
+									<img src="/static/pic/icon.jpg" height="80" width="80"></img>
+								</div>
+								<div class="col-md-11">
+									<div class="col-md-4">
+										<!--<img src="/static/pic/icon.jpg" height="16" width="16"></img>-->
+										<label for="friendcard" id="nickname"><b><h5>系统消息</h5></b></label>
+									</div>
+									<div class="col-md-2 col-md-offset-6">
+											<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+									</div>
+									<div class="col-md-12">
+											<label for="friendcard" id="email"><h5><small>&nbsp;欢迎注册桌友茶会！</small></h5></label>
+									</div>
+								</div>
+								<div class="col-md-2 col-md-offset-10">
+									<p class="text-center"><h5><small>2014-12-23 10:23</small></h5></p>
+								</div>
+							</div>	
+						</div>
+						
+					  </div>
+					  
+					</div>
+
+				</div>
+			</div>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}

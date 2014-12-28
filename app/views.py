@@ -20,6 +20,16 @@ def index():
 def logout():
         session.pop('username',None)
         return render_template("index.html")
+@app.route('/message')
+def message():
+        return render_template("message.html")
+@app.route('/result')
+def result():
+        return render_template("result.html")
+@app.route('/settings/follows')
+def follows():
+        return render_template("follows.html")		
+		
 @app.route('/welcome',methods=['POST','GET'])
 def welcome():
         if request.method == 'POST':

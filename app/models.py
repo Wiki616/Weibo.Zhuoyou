@@ -40,18 +40,11 @@ class Weibo(db.Model):
     fatherid = db.Column(db.String(256),default = 'null')#所在楼id
     number = db.Column(db.Integer)#楼数
     content = db.Column(db.String(1024))#内容
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 352300fccd445d507c241d0247b490b233018aff
 class Message(db.Model):
     imessage = db.Column(db.String(512) , primary_key = True)#idweibo+rusername
     idweibo = db.Column(db.String(256))
     rusername = db.Column(db.String(128))
     read = db.Column(db.SmallInteger , default = 0)
-<<<<<<< HEAD
 
-=======
->>>>>>> 352300fccd445d507c241d0247b490b233018aff
 

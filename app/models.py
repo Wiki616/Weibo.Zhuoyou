@@ -18,6 +18,7 @@ class User(db.Model):
     #state = db.Column(db.SmallInteger , default = STATE_OK)#激活和非激活状态
     role = db.Column(db.SmallInteger ,default = ROLE_USER)#用户和管理员两种权限
     lvip = db.Column(db.SmallInteger , default = 0)#活跃度等级
+    point = db.Column(db.SmallInteger , default = 0)#活跃度分值
     
     def __repr__(self):
         return '<User %r>' % (self.nickname)
@@ -39,7 +40,11 @@ class Weibo(db.Model):
     number = db.Column(db.Integer)#楼数
     content = db.Column(db.String(1024))#内容
     
-    
+class Message(db.Model):
+    imessage = db.Column(db.String(512) , primary_key = True)#idweibo+rusername
+    idweibo = db.Column(db.String(256))
+    rusername = db.Column(db.String(128))
+    read = db.Column(db.SmallInteger , default = 0)
     
     
 

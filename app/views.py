@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from flask import render_template, flash, session , redirect,request,make_response
 from app import app , db , models
 import httplib
@@ -23,13 +24,16 @@ def logout():
 @app.route('/message')
 def message():
         return render_template("message.html")
-@app.route('/result')
+@app.route('/result',methods=['POST','GET'])
 def result():
+        if request.method == 'POST':
+                query = request.form['query']
+                posts = models.User.query.filter_by(username = query).all()
+                return render_template("result.html" , posts = posts)
         return render_template("result.html")
 @app.route('/settings/follows')
 def follows():
-        return render_template("follows.html")		
-		
+        return render_template("follows.html")
 @app.route('/welcome',methods=['POST','GET'])
 def welcome():
         if request.method == 'POST':

@@ -24,7 +24,8 @@
 					</ul>
 					
 					</br>
-					
+					<!--
+					{% for post in posts %}
 					<div class="thumbnail">	
 						<div class = "row">
 							<div class="col-md-1">
@@ -33,7 +34,7 @@
 							<div class="col-md-11">
 								<div class="row">
 									<div class="col-md-6">
-										<a class="text-left" href=""><h4><b>wiki_ki</b></h4></a>
+										<a class="text-left" href=""><h4><b>{{post.username}}</b></h4></a>
 									</div>
 									<div class="col-md-3 col-md-offset-3">
 										<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -41,13 +42,13 @@
 								</div>
 								<div class="row">
 									<div class="col-md-12">
-										<label ><h4>Hello,world!</h4></label>
+										<label ><h4>{{post.content}}</h4></label>
 									</div>
 								</div>
 							</div>
 							
 							<div class="col-md-3">
-								<p class="text-center"><h5><small>2014-10-28 10:19</small></h5></p>
+								<p class="text-center"><h5><small>{{post.potime}}</small></h5></p>
 							</div>
 							<div class="col-md-2 col-md-offset-3">
 								<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
@@ -59,8 +60,11 @@
 								<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-thumbs-up"></span> Like!</b></h5></a>
 							</div>
 						</div>
+						
 					</div>
-
+					{% endfor %}
+					-->
+					{% for post in posts %}
 					<div class="thumbnail">							
 						<div class="row">
 							<div class="col-md-1">
@@ -70,7 +74,7 @@
 							<div class="col-md-11">
 								<div class="col-md-4">
 									<!--<img src="/static/pic/icon.jpg" height="16" width="16"></img>-->
-									<label for="friendcard" id="nickname"><b><h5>world</h5></b></label>
+									<label for="friendcard" id="nickname"><b><h5>{{post.nickname}}</h5></b></label>
 								</div>
 								
 								<div class="col-md-7">
@@ -78,7 +82,7 @@
 								
 								<div class="row">
 									<div class="col-md-9">
-											<label for="friendcard" id="email"><h5><small><span class="glyphicon glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;wkzhu11@fudan.edu.cn</small></h5></label>
+											<label for="friendcard" id="email"><h5><small><span class="glyphicon glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;{{post.email}}</small></h5></label>
 									</div>
 									
 									<div class="col-md-3">
@@ -88,34 +92,7 @@
 							</div>
 						</div>	
 					</div>
-					
-					<div class="thumbnail">							
-						<div class="row">
-							<div class="col-md-1">
-								<!--Profile picture-->
-								<img src="/static/pic/icon.jpg" height="64" width="64"></img>
-							</div>
-							<div class="col-md-11">
-								<div class="col-md-4">
-									<!--<img src="/static/pic/icon.jpg" height="16" width="16"></img>-->
-									<label for="friendcard" id="nickname"><b><h5>hello</h5></b></label>
-								</div>
-								
-								<div class="col-md-7">
-								</div>
-								
-								<div class="row">
-									<div class="col-md-9">
-											<label for="friendcard" id="email"><h5><small><span class="glyphicon glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;wkzhu11@fudan.edu.cn</small></h5></label>
-									</div>
-									
-									<div class="col-md-3">
-										<button type="submit" class="btn btn-primary btn-block" id="follow"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp; Follow</button>
-									</div>
-								</div>
-							</div>
-						</div>	
-					</div>
+					{% endfor %}
 					
 				</div>
 			</div>

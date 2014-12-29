@@ -21,9 +21,6 @@ def index():
 def logout():
         session.pop('username',None)
         return render_template("index.html")
-@app.route('/message')
-def message():
-        return render_template("message.html")
 @app.route('/result',methods=['POST','GET'])
 def result():
         if request.method == 'POST':
@@ -103,3 +100,25 @@ def home():
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
                 return render_template("home.html",nickname=ret.nickname)
+				
+@app.route('/homepage')
+def homepage():
+        return render_template("homepage.html")				
+
+@app.route('/message/letter')
+def message():
+        return render_template("letter.html")
+@app.route('/message/atme')
+def atme():
+        return render_template("atme.html")			
+@app.route('/message/commit')
+def commit():
+        return render_template("commit.html")
+
+@app.route('/system')
+def system():
+        return render_template("system.html")
+
+@app.route('/square')
+def square():
+        return render_template("square.html")		

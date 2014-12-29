@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-md-9 col-md-offset-2">
+			<div class="panel panel-success">
+				<div class="panel-heading">Message</div>
+				<div class="panel-body">
+
+					<ul class="nav nav-tabs" role="tablist">
+					  <li role="presentation"><a href="/message/atme">@me <span class="badge" id="friendnum">1</span></a></li>
+					  <li role="presentation" class="active"><a href="#">Commit <span class="badge" id="friendnum">2</span></a></li>
+					  <li role="presentation"><a href="/message/letter">Personal letter</a></li>
+					</ul>
+					
+					</br>
+					
+					<div class="row">
+					  <div class="col-md-12">
+					  
+					    <div class="thumbnail">							
+							<div class = "row">							
+								<div class="col-md-1">
+									<img src="/static/pic/icon.jpg" height="48" width="48" href=""></img>					
+								</div>
+								<div class="col-md-11">
+									<div class="row">
+										<div class="col-md-12">
+											<p class="navbar-text"><a href="/home" class="navbar-link"><b>Jubin</b></a> reward <a href="/home" class="navbar-link"><b>Wiki_ki</b></a>:it's a reward for test!</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<p class="text-center"><h5><small> 2014-10-28 10:22</small></h5></p>
+								</div>
+								<div class="col-md-2">
+									<p class="text-center"><h5><small>Floor 1</small></h5></p>
+								</div>
+								<div class="col-md-2 col-md-offset-5">
+									<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Reward!</b></h5></a>
+								</div>							
+							</div>	
+						</div>
+
+						<div class="thumbnail">							
+							<div class = "row">
+								<div class="col-md-1">
+									<img src="/static/pic/icon.jpg" height="48" width="48" href=""></img>					
+								</div>
+								<div class="col-md-11">
+									<div class="row">
+										<div class="col-md-12">
+											<p class="navbar-text"><a href="/home" class="navbar-link"><b>MM</b></a>:呦吼!</p>
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-md-3">
+									<p class="text-center"><h5><small>2014-11-28 10:24</small></h5></p>
+								</div>
+								<div class="col-md-2">
+									<p class="text-center"><h5><small>Floor 2</small></h5></p>
+								</div>
+								<div class="col-md-2 col-md-offset-5">
+									<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Reward!</b></h5></a>
+								</div>
+							</div>	
+						</div>
+						
+					  </div>
+					  
+					</div>
+
+				</div>
+			</div>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}

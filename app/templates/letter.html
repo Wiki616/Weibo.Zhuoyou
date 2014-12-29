@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-md-9 col-md-offset-2">
+			<div class="panel panel-success">
+				<div class="panel-heading">Message</div>
+				<div class="panel-body">
+
+					<ul class="nav nav-tabs" role="tablist">
+					  <li role="presentation"><a href="/message/atme">@me <span class="badge" id="friendnum">1</span></a></li>
+					  <li role="presentation"><a href="/message/commit">Commit <span class="badge" id="friendnum">2</span></a></li>
+					  <li role="presentation" class="active"><a href="#">Personal letter</a></li>
+					</ul>
+					
+					</br>
+					
+					<div class="row">
+					  <div class="col-md-12">
+					  
+					    <div class="thumbnail">							
+							<div class="row">
+								<div class="col-md-1">
+									<img src="/static/pic/icon.jpg" height="64" width="64" href=""></img>					
+								</div>
+								<div class="col-md-11">
+									<div class="row">
+										<div class="col-md-6">
+											<a class="text-left" href=""><h4><b>系统消息</b></h4></a>
+										</div>
+										<div class="col-md-3 col-md-offset-3">
+											<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<label ><h5>感谢参加桌友茶会beta测试！系统特赠送永久vip特权！</h5></label>
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-md-3">
+									<p class="text-center"><h5><small>2014-12-23 10:19</small></h5></p>
+								</div>
+							</div>	
+						</div>
+
+						<div class="thumbnail">							
+							<div class="row">
+								<div class="col-md-1">
+									<img src="/static/pic/icon.jpg" height="64" width="64" href=""></img>					
+								</div>
+								<div class="col-md-11">
+									<div class="row">
+										<div class="col-md-6">
+											<a class="text-left" href=""><h4><b>系统消息</b></h4></a>
+										</div>
+										<div class="col-md-3 col-md-offset-3">
+											<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12">
+											<label ><h5>欢迎注册桌友茶会！</h5></label>
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-md-3">
+									<p class="text-center"><h5><small>2014-12-23 10:19</small></h5></p>
+								</div>
+							</div>	
+						</div>
+						
+					  </div>
+					  
+					</div>
+
+				</div>
+			</div>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}

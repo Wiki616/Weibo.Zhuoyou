@@ -64,6 +64,7 @@
 			</div>
 			</br>
 			<div class = "container" id = "bigtable">
+				{% for post in posts %}
 				<div class = "row">
 					<div class="col-md-7">
 						<div class="thumbnail">	
@@ -74,7 +75,7 @@
 								<div class="col-md-11">
 									<div class="row">
 										<div class="col-md-6">
-											<a class="text-left" href=""><h4><b>MZX</b></h4></a>
+											<a class="text-left" href=""><h4><b>{{nickname}}</b></h4></a>
 										</div>
 										<div class="col-md-3 col-md-offset-3">
 											<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -82,85 +83,13 @@
 									</div>
 									<div class="row">
 										<div class="col-md-12">
-											<label ><h4>233</h4></label>
-										</div>
-									</div>
-									<div class="col-md-12">
-										
-										<div class="thumbnail">	
-											<div class = "row">
-												<div class="col-md-12">
-													<div class="row">
-														<div class="col-md-6">
-															<a class="text-left" href=""><h4><b>@MM</b></h4></a>
-														</div>
-													</div>
-													<div class="row">
-														<div class="col-md-12">
-															<label ><h4>今天的风儿好喧嚣啊/它是否在鸣泣呢/风儿似乎把不祥之物吹到镇上去了/快呀，趁风还没停/阁下是否愿意同我前去采购半价薯片？</h4></label>
-														</div>
-													</div>
-												</div>
-												
-												<div class="col-md-3">
-													<p class="text-center"><h5><small>2014-10-28 10:23</small></h5></p>
-												</div>
-												<div class="col-md-3">
-													<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
-												</div>
-												<div class="col-md-3">
-													<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Commit!</b></h5></a>
-												</div>
-												<div class="col-md-3">
-													<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-star-empty"></span> Collect!</b></h5></a>
-												</div>
-											</div>
-										</div>
-						
-									</div>
-								</div>	
-								<div class="col-md-3">
-									<p class="text-center"><h5><small>2014-10-28 10:48</small></h5></p>
-								</div>
-								<div class="col-md-2 col-md-offset-3">
-									<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
-								</div>
-								<div class="col-md-2">
-									<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Commit!</b></h5></a>
-								</div>
-								<div class="col-md-2">
-									<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-star-empty"></span> Collect!</b></h5></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class = "row">
-					<div class="col-md-7">
-						<div class="thumbnail">	
-							<div class = "row">
-								<div class="col-md-1">
-									<img src="/static/pic/test.jpg" height="48" width="48" href=""></img>					
-								</div>
-								<div class="col-md-11">
-									<div class="row">
-										<div class="col-md-6">
-											<a class="text-left" href=""><h4><b>MZX</b></h4></a>
-										</div>
-										<div class="col-md-3 col-md-offset-3">
-											<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-12">
-											<label ><h4>好烦躁</h4></label>
+											<label ><h4>{{post.content}}</h4></label>
 										</div>
 									</div>
 								</div>
 								
 								<div class="col-md-3">
-									<p class="text-center"><h5><small>2014-10-28 10:38</small></h5></p>
+									<p class="text-center"><h5><small>{{post.potime}}</small></h5></p>
 								</div>
 								<div class="col-md-2 col-md-offset-3">
 									<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
@@ -175,7 +104,7 @@
 						</div>
 					</div>
 				</div>
-				
+				{% endfor %}
 			</div>
 		</div>
 		<div class = "col-md-2"></div>

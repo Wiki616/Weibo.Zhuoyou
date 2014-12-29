@@ -6,6 +6,10 @@ import urllib , urllib2
 import json
 import uuid
 import hashlib
+import time
+import random
+
+ISOTIMEFORMAT='%Y-%m-%d %X'
 
 def convertmd5(origin):
         m = hashlib.md5()
@@ -89,6 +93,22 @@ def update2():
         return render_template("error.html")
 @app.route('/home',methods=['POST','GET'])
 def home():
+        if 'username' in session:
+                Username = session['username']
+                ret = models.User.query.filter_by(username=Username).first()
+                if request.method == 'POST':
+                        username = Username
+                        potime = time.strftime(ISOTIMEFORMAT, time.localtime())
+                        content = request.form['content']
+                        idweibo = Username + potime + str(len(content))
+                        wtype = "o"
+                        fatherid = "null"
+                        number = 0
+                        weibo = models.Weibo(username = username , potime = potime , content = content , idweibo = idweibo ,wtype = wtype ,fatherid=fatherid , number=number)
+                        db.session.add(weibo)
+                        db.session.commit()
+                        return render_template("home.html",nickname=ret.nickname) 
+                return render_template("home.html",nickname=ret.nickname)
         if request.method == 'POST':
                 session['username'] = request.form['username2']
                 psw = convertmd5(request.form['password2'])
@@ -96,29 +116,54 @@ def home():
                 if psw == miss.password:
                         return render_template("home.html",nickname=miss.nickname)
                 return render_template("error.html")
+
+@app.route('/homepage')
+def homepage():
+        if 'username' in session:
+                username = session['username']
+                posts = models.Weibo.query.filter_by(username=username,wtype="o").all()
+                posts.reverse()
+                ret = models.User.query.filter_by(username=username).first()
+                return render_template("homepage.html",posts=posts,nickname=ret.nickname)
+        return render_template("error.html")				
+@app.route('/message/letter')
+def message():
         if 'username' in session:
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
-                return render_template("home.html",nickname=ret.nickname)
-				
-@app.route('/homepage')
-def homepage():
-        return render_template("homepage.html")				
-
-@app.route('/message/letter')
-def message():
-        return render_template("letter.html")
+                return render_template("letter.html",nickname=ret.nickname)
+        return render_template("error.html")
 @app.route('/message/atme')
 def atme():
-        return render_template("atme.html")			
+        if 'username' in session:
+                Username = session['username']
+                ret = models.User.query.filter_by(username=Username).first()
+                return render_template("atme.html",nickname=ret.nickname)
+        return render_template("error.html")			
 @app.route('/message/commit')
 def commit():
-        return render_template("commit.html")
+        if 'username' in session:
+                Username = session['username']
+                ret = models.User.query.filter_by(username=Username).first()
+                return render_template("commit.html",nickname=ret.nickname)
 
 @app.route('/system')
 def system():
-        return render_template("system.html")
-
+        if 'username' in session:
+                Username = session['username']
+                ret = models.User.query.filter_by(username=Username).first()
+                if ret.role == 1:
+                        return render_template("system.html",nickname=ret.nickname)
+                else:
+                        return render_template("error.html")
+        return render_template("error.html")
 @app.route('/square')
 def square():
+        if 'username' in session:
+                Username = session['username']
+                ret = models.User.query.filter_by(username=Username).first()
+                pall = models.Weibo.query.filter_by().all()
+                #length = len(pall)
+                posts = random.sample(pall,9)
+                return render_template("square.html",posts=posts,nickname=ret.nickname)
         return render_template("square.html")		

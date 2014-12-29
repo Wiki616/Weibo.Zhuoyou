@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <div class="row">
 		<div class="col-md-2 col-md-offset-9">
-			<button type="submit" class="btn btn-success btn-block" id="Freeze"><span class="glyphicon glyphicon-transfer"></span>&nbsp;&nbsp; Change!</button>
+			<a type="button" class="btn btn-success btn-block" id="change" href="/square"><span class="glyphicon glyphicon-transfer"></span>&nbsp;&nbsp; Change!</a>
 		</div>
 	</div>
 	</br>
@@ -20,8 +20,8 @@
 				<div class="panel-body">
 
 					</br>
-					
 					<div class="row">
+						{% for post in posts %}
 						<div class="col-sm-6 col-md-4">				  
 							<div class="thumbnail">							
 								<div class = "row">
@@ -31,7 +31,7 @@
 									<div class="col-md-10">
 										<div class="row">
 											<div class="col-md-6">
-												<a class="text-left" href=""><h4><b>Wiki_ki</b></h4></a>
+												<a class="text-left" href=""><h4><b>{{post.username}}</b></h4></a>
 											</div>
 											<div class="col-md-3 col-md-offset-3">
 												<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -39,13 +39,13 @@
 										</div>
 										<div class="row">
 											<div class="col-md-12">
-												<label ><h4>Hello,world!@Jubin</h4></label>
+												<label ><h4>{{post.content}}</h4></label>
 											</div>
 										</div>
 									</div>
 									
 									<div class="col-md-12">
-										<p class="text-center"><h5><small>2014-10-28 10:19</small></h5></p>
+										<p class="text-center"><h5><small>{{post.potime}}</small></h5></p>
 									</div>
 									<div class="col-md-4">
 										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
@@ -59,314 +59,7 @@
 								</div>	
 							</div>				
 						 </div>
-					  
-						<div class="col-sm-6 col-md-4">
-							<div class="thumbnail">							
-								<div class = "row">
-									<div class="col-md-2">
-										<img src="/static/pic/icon.jpg" height="48" width="48" href=""></img>					
-									</div>
-									<div class="col-md-10">
-										<div class="row">
-											<div class="col-md-6">
-												<a class="text-left" href=""><h4><b>MM</b></h4></a>
-											</div>
-											<div class="col-md-3 col-md-offset-3">
-												<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-												<label ><h4>今天的风儿好喧嚣啊/它是否在鸣泣呢/风儿似乎把不祥之物吹到镇上去了/快呀，趁风还没停/阁下是否愿意同我前去采购半价薯片？</h4></label>
-											</div>
-										</div>
-									</div>
-									
-									<div class="col-md-12">
-										<p class="text-center"><h5><small>2014-10-28 10:19</small></h5></p>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Commit!</b></h5></a>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-star-empty"></span> Collect!</b></h5></a>
-									</div>
-								</div>	
-							</div>						
-						</div>
-					 
-						<div class="col-sm-6 col-md-4">				  
-							<div class="thumbnail">							
-								<div class = "row">
-									<div class="col-md-2">
-										<img src="/static/pic/icon.jpg" height="48" width="48" href=""></img>					
-									</div>
-									<div class="col-md-10">
-										<div class="row">
-											<div class="col-md-6">
-												<a class="text-left" href=""><h4><b>WangZ</b></h4></a>
-											</div>
-											<div class="col-md-3 col-md-offset-3">
-												<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-												<label ><h4>今天考研发挥不错！:)</h4></label>
-											</div>
-										</div>
-									</div>
-									
-									<div class="col-md-12">
-										<p class="text-center"><h5><small>2014-12-28 18:09</small></h5></p>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Commit!</b></h5></a>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-star-empty"></span> Collect!</b></h5></a>
-									</div>
-								</div>	
-							</div>				
-						</div>
-					</div>
-					
-					<div class="row">	
-						<div class="col-sm-6 col-md-4">				  
-							<div class="thumbnail">							
-								<div class = "row">
-									<div class="col-md-2">
-										<img src="/static/pic/icon.jpg" height="48" width="48" href=""></img>					
-									</div>
-									<div class="col-md-10">
-										<div class="row">
-											<div class="col-md-6">
-												<a class="text-left" href=""><h4><b>桌游茶会</b></h4></a>
-											</div>
-											<div class="col-md-3 col-md-offset-3">
-												<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-												<label ><h4>12月23日（星期二）在张娱桌游房进行本学期最后一次社团活动。</h4></label>
-											</div>
-										</div>
-									</div>
-									
-									<div class="col-md-12">
-										<p class="text-center"><h5><small>2014-12-22 12:04</small></h5></p>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Commit!</b></h5></a>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-star-empty"></span> Collect!</b></h5></a>
-									</div>
-								</div>	
-							</div>				
-						</div>
-
-						<div class="col-sm-6 col-md-4">				  
-							<div class="thumbnail">							
-								<div class = "row">
-									<div class="col-md-2">
-										<img src="/static/pic/icon.jpg" height="48" width="48" href=""></img>					
-									</div>
-									<div class="col-md-10">
-										<div class="row">
-											<div class="col-md-6">
-												<a class="text-left" href=""><h4><b>WangZ</b></h4></a>
-											</div>
-											<div class="col-md-3 col-md-offset-3">
-												<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-												<label ><h4>全LV通关！！</h4></label>
-											</div>
-										</div>
-									</div>
-									
-									<div class="col-md-12">
-										<p class="text-center"><h5><small>2014-12-26 13:06</small></h5></p>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Commit!</b></h5></a>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-star-empty"></span> Collect!</b></h5></a>
-									</div>
-								</div>	
-							</div>				
-						</div>
-						
-						<div class="col-sm-6 col-md-4">				  
-							<div class="thumbnail">							
-								<div class = "row">
-									<div class="col-md-2">
-										<img src="/static/pic/icon.jpg" height="48" width="48" href=""></img>					
-									</div>
-									<div class="col-md-10">
-										<div class="row">
-											<div class="col-md-6">
-												<a class="text-left" href=""><h4><b>Wiki_ki</b></h4></a>
-											</div>
-											<div class="col-md-3 col-md-offset-3">
-												<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-												<label ><h4>垃圾XQ和Jubin长泰走起~</h4></label>
-											</div>
-										</div>
-									</div>
-									
-									<div class="col-md-12">
-										<p class="text-center"><h5><small>2014-12-28 17:13</small></h5></p>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Commit!</b></h5></a>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-star-empty"></span> Collect!</b></h5></a>
-									</div>
-								</div>	
-							</div>				
-						</div>
-					</div>
-					
-					<div class="row">	
-						<div class="col-sm-6 col-md-4">				  
-							<div class="thumbnail">							
-								<div class = "row">
-									<div class="col-md-2">
-										<img src="/static/pic/icon.jpg" height="48" width="48" href=""></img>					
-									</div>
-									<div class="col-md-10">
-										<div class="row">
-											<div class="col-md-6">
-												<a class="text-left" href=""><h4><b>足利大JUJU</b></h4></a>
-											</div>
-											<div class="col-md-3 col-md-offset-3">
-												<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-												<label ><h4>哎呦呦哟。我们何不揭竿而起！</h4></label>
-											</div>
-										</div>
-									</div>
-									
-									<div class="col-md-12">
-										<p class="text-center"><h5><small>2014-12-10 12:04</small></h5></p>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Commit!</b></h5></a>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-star-empty"></span> Collect!</b></h5></a>
-									</div>
-								</div>	
-							</div>				
-						</div>
-
-						<div class="col-sm-6 col-md-4">				  
-							<div class="thumbnail">							
-								<div class = "row">
-									<div class="col-md-2">
-										<img src="/static/pic/icon.jpg" height="48" width="48" href=""></img>					
-									</div>
-									<div class="col-md-10">
-										<div class="row">
-											<div class="col-md-6">
-												<a class="text-left" href=""><h4><b>MZX</b></h4></a>
-											</div>
-											<div class="col-md-3 col-md-offset-3">
-												<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-												<label ><h4>好烦躁！！</h4></label>
-											</div>
-										</div>
-									</div>
-									
-									<div class="col-md-12">
-										<p class="text-center"><h5><small>2014-12-26 13:06</small></h5></p>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Commit!</b></h5></a>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-star-empty"></span> Collect!</b></h5></a>
-									</div>
-								</div>	
-							</div>				
-						</div>
-						
-						<div class="col-sm-6 col-md-4">				  
-							<div class="thumbnail">							
-								<div class = "row">
-									<div class="col-md-2">
-										<img src="/static/pic/icon.jpg" height="48" width="48" href=""></img>					
-									</div>
-									<div class="col-md-10">
-										<div class="row">
-											<div class="col-md-6">
-												<a class="text-left" href=""><h4><b>KeOld</b></h4></a>
-											</div>
-											<div class="col-md-3 col-md-offset-3">
-												<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-												<label ><h4>我跟你说，你这个PJ再不做真的来不及了，所以我劝你还是赶紧开始写！@XQ</h4></label>
-											</div>
-										</div>
-									</div>
-									
-									<div class="col-md-12">
-										<p class="text-center"><h5><small>2014-11-23 17:43</small></h5></p>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Commit!</b></h5></a>
-									</div>
-									<div class="col-md-4">
-										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-star-empty"></span> Collect!</b></h5></a>
-									</div>
-								</div>	
-							</div>				
-						</div>
+						 {% endfor %}
 					</div>
 				</div>
 			</div>

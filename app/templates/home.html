@@ -52,12 +52,13 @@
 			</div>
 		</div>
 		<div class = "col-sm-12 col-md-7">
+			<form role="form" action="/home" method="post">
 			<div class = "row">
 				<div class="col-md-12">
 					<p class="text-center"><h4><small>I want to say:</small></h4></p>
 				</div>
 				<div class="col-md-12">
-					<textarea class="form-control" rows="4" id = "weibo"></textarea>
+					<textarea class="form-control" rows="4" id = "weibo"  name="content"></textarea>
 				</div>
 				<div class="col-md-2">
 						<button class="btn btn-default btn-block" type="button" "><span class="glyphicon glyphicon-camera"></span> Picture</span></button>
@@ -66,9 +67,10 @@
 					<p class="text-center"><h5><small>You can share your new topic with picture!</small></h5></p>
 				</div>
 				<div class="col-md-2">
-						<button class="btn btn-info btn-block" type="button" id = "Share">Share it!</button>
+						<button class="btn btn-info btn-block" type="submit" id = "Share">Share it!</button>
 				</div>
 			</div>
+			</form>
 			</br>
 			</br>
 			</br>
@@ -119,8 +121,7 @@
 															<label ><h4>今天的风儿好喧嚣啊/它是否在鸣泣呢/风儿似乎把不祥之物吹到镇上去了/快呀，趁风还没停/阁下是否愿意同我前去采购半价薯片？</h4></label>
 														</div>
 													</div>
-												</div>
-												
+												</div>												
 												<div class="col-md-3">
 													<p class="text-center"><h5><small>2014-10-28 10:23</small></h5></p>
 												</div>

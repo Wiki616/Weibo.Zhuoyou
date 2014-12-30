@@ -12,8 +12,20 @@
 				<div class="row">
 					<div class="col-md-11 col-md-offset-1">
 						<!--Profile picture-->
-						<h3>{{ ret.nickname }}</h3>
-						<h4> {{ ret.username}}</h4>
+						<div class="row">
+							<div class="col-md-5">
+								<h3>{{ ret.nickname }}</h3>
+							</div>
+							
+						</div>
+						<div class="row">
+							<div class="col-md-5">
+								<h4>{{ ret.username}}</h4>
+							</div>
+							<div class="col-md-6">
+								<button type="submit" class="btn btn-primary btn-block" id="follow"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp; Follow</button>
+							</div>
+						</div>
 					</div>	
 					<div class="col-md-11 col-md-offset-1">
 						<label for="friendcard" id="email"><h5><small><span class="glyphicon glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;{{ ret.email }}</small></h5></label>								
@@ -97,20 +109,9 @@
 								<div class="col-md-2">
 									<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Commit!</b></h5></a>
 								</div>
-								<div class="col-md-2">
-									<a class="text-left" href=""><h5><b onclick="changestar(); return false"><span class="glyphicon glyphicon-star"></span> Collect!</b></h5></a>
-                                    <script type="text/javascript">
-                                        function changestar() {
-                                            var cur_star = document.getElementById('collect')
-                                            if (cur_star.className ==   "glyphicon glyphicon-star-empty")  {
-                                                cur_star.className = "glyphicon glyphicon-star";
-                                            }
-                                            else {
-                                                cur_star.className = "glyphicon glyphicon-star-empty";
-                                            }
-                                        }
-                                    </script>
-								</div>
+                                <div class="col-md-2">
+                                    <a class="text-left" href="#"><h5><b onclick="javascript:if(document.getElementById('{{post.potime}}').className == 'glyphicon glyphicon-star-empty'){document.getElementById('{{post.potime}}').className = 'glyphicon glyphicon-star'}else{document.getElementById('{{post.potime}}').className = 'glyphicon glyphicon-star-empty'} ; return false" ><span id = "{{post.potime}}" class="glyphicon glyphicon-star-empty"></span> Collect!</b></h5></a>
+                                </div>
 							</div>
 						</div>
 					</div>

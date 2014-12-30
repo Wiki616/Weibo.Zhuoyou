@@ -8,12 +8,6 @@ import hashlib
 import time
 import random
 
-ans = [session['username']]
-ans = ans + ['xq']
-for ele in friend:
-    ans = ans + ele.followname
-posts = []
-for ele in ans:
-    posts = posts + models.Weibo.query.filter_by(username = ele,wtype="o").all()
-posts = sorted(posts, key = lambda d: d.potime, reverse = True)
-print posts
+username = 'Wiki_ki'
+url = "/static/pic/head" + str(ord(username[0]) % 9) + ".jpg"
+print url

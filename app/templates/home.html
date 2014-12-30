@@ -84,9 +84,18 @@
 				</div>
 			</div>
 			</br>
-			<div class = "container" id = "bigtable">
+			<div class = "container" id = "bigtable" onload="setcnt()">
+                <script type="text/javascript">
+                    var cnt;
+                    function setcnt() {
+                        cnt = 0;
+                    }
+                </script>
 				{% for post in posts %}
-				<div class = "row">
+                <script type="text/javascript">
+                    cnt += 1;
+                </script>
+                <div class = "row">
 					<div class="col-md-7">
 						<div class="thumbnail">	
 							<div class = "row">
@@ -113,13 +122,13 @@
 									<p class="text-center"><h5><small>{{post.potime}}</small></h5></p>
 								</div>
 								<div class="col-md-2 col-md-offset-3">
-									<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
+									<a class="text-left" href="#"><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
 								</div>
 								<div class="col-md-2">
-									<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Commit!</b></h5></a>
+									<a class="text-left" href="#"><h5><b><span class="glyphicon glyphicon-pencil"></span> Commit!</b></h5></a>
 								</div>
 								<div class="col-md-2">
-									<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-star"></span> Collect!</b></h5></a>
+									<a class="text-left" href="#"><h5><b onclick="javascript:if(document.getElementById('{{post.potime}}').className == 'glyphicon glyphicon-star-empty'){document.getElementById('{{post.potime}}').className = 'glyphicon glyphicon-star'}else{document.getElementById('{{post.potime}}').className = 'glyphicon glyphicon-star-empty'} ; return false" ><span id = "{{post.potime}}" class="glyphicon glyphicon-star-empty"></span> Collect!</b></h5></a>
 								</div>
 							</div>
 						

@@ -98,7 +98,18 @@
 									<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Commit!</b></h5></a>
 								</div>
 								<div class="col-md-2">
-									<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-star"></span> Collect!</b></h5></a>
+									<a class="text-left" href=""><h5><b onclick="changestar(); return false"><span class="glyphicon glyphicon-star"></span> Collect!</b></h5></a>
+                                    <script type="text/javascript">
+                                        function changestar() {
+                                            var cur_star = document.getElementById('collect')
+                                            if (cur_star.className ==   "glyphicon glyphicon-star-empty")  {
+                                                cur_star.className = "glyphicon glyphicon-star";
+                                            }
+                                            else {
+                                                cur_star.className = "glyphicon glyphicon-star-empty";
+                                            }
+                                        }
+                                    </script>
 								</div>
 							</div>
 						</div>

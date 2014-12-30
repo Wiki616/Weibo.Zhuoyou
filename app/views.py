@@ -33,12 +33,20 @@ def result():
                 query = request.form['query']
                 posts = models.User.query.filter_by(username = query).all()
                 posts2 = models.Weibo.query.filter_by(content = query).all()
-                return render_template("result.html" , posts = posts , posts2 = posts2)
-        return render_template("result.html")
+                if 'username' in session:
+                        Username = session['username']
+                        ret = models.User.query.filter_by(username=Username).first()
+                        return render_template("result.html" , ret = ret , nickname = ret.nickname , posts = posts , posts2 = posts2)
+                return render_template("result.html" , ret = ret , nickname = ret.nickname , posts = posts , posts2 = posts2)
+        return render_template("error.html")
 
 @app.route('/settings/follows')
 def follows():
-        return render_template("follows.html")
+        if 'username' in session:
+                Username = session['username']
+                ret = models.User.query.filter_by(username=Username).first()
+                return render_template("follows.html",ret=ret,nickname=ret.nickname)
+        return render_template("error.html")
 
 @app.route('/welcome',methods=['POST','GET'])
 def welcome():
@@ -49,11 +57,11 @@ def welcome():
                 if miss == None:
                         psw = convertmd5(request.form['password'])
                         username = request.form['username']
-                        url = "/static/pic/head" + chr(ord(username[0]) % 9) + ".jpg"
+                        url = "/static/pic/head" + str(ord(username) % 9) + ".jpg"
                         user = models.User(role = 1, url = url , username=username , nickname=request.form['nickname'] ,email='null',password=psw)
                         db.session.add(user)
                         db.session.commit()
-                        return render_template("welcome.html",nickname=session['username'])
+                        return render_template("welcome.html",ret=miss,nickname=session['username'])
                 return render_template("error.html")
         return render_template("welcome.html")
 
@@ -61,24 +69,37 @@ def welcome():
 @app.route('/settings/profile',methods=['POST','GET'])
 def profile():
         error = None
+        if 'username' in session:
+                Username = session['username']
+                ret = models.User.query.filter_by(username=Username).first()
         #Username = request.cookies.get('username')
-        ret = models.User.query.filter_by(username=session['username']).first()
         #return render_template("profile.html",nickname=request.form['nickname'])
-        return render_template("profile.html",nickname=ret.nickname)
+                return render_template("profile.html",ret=ret,nickname=ret.nickname)
+        return render_template("error.html")
 
 @app.route('/settings/account')
 def account():
-        ret = models.User.query.filter_by(username=session['username']).first() 
-        return render_template("account.html",nickname=ret.nickname)
+        if 'username' in session:
+                Username = session['username']
+                ret = models.User.query.filter_by(username=Username).first()
+                return render_template("account.html",ret=ret,nickname=ret.nickname)
+        return render_template("error.html")
 
 @app.route('/settings/following')
 def following():
-        ret = models.User.query.filter_by(username=session['username']).first()
-        return render_template("following.html",nickname=ret.nickname)
+        if 'username' in session:
+                Username = session['username']
+                ret = models.User.query.filter_by(username=Username).first()
+                return render_template("following.html",ret=ret,nickname=ret.nickname)
+        return render_template("error.html")
 
 @app.route('/settings/donate')
 def donate():
-        return render_template("donate.html")
+        if 'username' in session:
+                Username = session['username']
+                ret = models.User.query.filter_by(username=Username).first()
+                return render_template("donate.html",ret=ret,nickname=ret.nickname)
+        return render_template("error.html")
 
 @app.route('/update1',methods=['POST','GET'])
 def update1():
@@ -88,7 +109,7 @@ def update1():
                 ret.nickname = request.form['nickname']
                 ret.email = request.form['email']
                 db.session.commit()
-                return render_template("update.html")
+                return render_template("update.html",ret=ret)
         return render_template("error.html")
 
 @app.route('/update2',methods=['POST','GET'])
@@ -101,7 +122,7 @@ def update2():
                         psw2 = convertmd5(request.form['newpassword'])
                         ret.password = psw2
                         db.session.commit()
-                        return render_template("update.html")
+                        return render_template("update.html",ret=ret)
                 return render_template("error.html")
         return render_template("error.html")
 
@@ -110,6 +131,18 @@ def home():
         if 'username' in session:
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
+                if request.method == 'POST':
+                        username = Username
+                        potime = time.strftime(ISOTIMEFORMAT, time.localtime())
+                        content = request.form['content']
+                        idweibo = Username + potime + str(len(content))
+                        wtype = "o"
+                        fatherid = "null"
+                        number = 0
+                        url = ret.url
+                        weibo = models.Weibo(url = url , username = username , potime = potime , content = content , idweibo = idweibo ,wtype = wtype ,fatherid=fatherid , number=number)
+                        db.session.add(weibo)
+                        db.session.commit()
                 friend = models.Follow.query.filter_by(username=session['username']).all()
                 ans = [session['username']]
                 ans = ans + ['Admin']
@@ -122,21 +155,8 @@ def home():
                 follows = len(models.Follow.query.filter_by(followname = Username).all())
                 topic = len(models.Weibo.query.filter_by(username = Username).all())
                 following = len(models.Follow.query.filter_by(username = Username).all())
-
-                if request.method == 'POST':
-                        username = Username
-                        potime = time.strftime(ISOTIMEFORMAT, time.localtime())
-                        content = request.form['content']
-                        idweibo = Username + potime + str(len(content))
-                        wtype = "o"
-                        fatherid = "null"
-                        number = 0
-                        weibo = models.Weibo(username = username , potime = potime , content = content , idweibo = idweibo ,wtype = wtype ,fatherid=fatherid , number=number)
-                        db.session.add(weibo)
-                        db.session.commit()
-                        return render_template("home.html",posts=posts,ret=ret,nickname=ret.nickname,topic=topic,follows=follows,following=following) 
-                return render_template("home.html",posts=posts,ret=ret,nickname=ret.nickname,topic=topic,follows=follows,following=following)
-        
+                return render_template("home.html" , posts=posts,ret=ret,nickname=ret.nickname,topic=topic,follows=follows,following=following) 
+                
         if request.method == 'POST':
                 session['username'] = request.form['username2']
                 psw = convertmd5(request.form['password2'])
@@ -180,7 +200,7 @@ def message():
         if 'username' in session:
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
-                return render_template("letter.html",nickname=ret.nickname)
+                return render_template("letter.html",ret=ret,nickname=ret.nickname)
         return render_template("error.html")
 
 @app.route('/message/atme')
@@ -188,7 +208,7 @@ def atme():
         if 'username' in session:
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
-                return render_template("atme.html",nickname=ret.nickname)
+                return render_template("atme.html",ret=ret,nickname=ret.nickname)
         return render_template("error.html")
 
 @app.route('/message/commit')
@@ -196,7 +216,7 @@ def commit():
         if 'username' in session:
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
-                return render_template("commit.html",nickname=ret.nickname)
+                return render_template("commit.html",ret=ret,nickname=ret.nickname)
 
 @app.route('/system')
 def system():
@@ -204,21 +224,21 @@ def system():
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
                 if ret.role == 1:
-                        return render_template("system.html",nickname=ret.nickname)
+                        return render_template("system.html",ret=ret,nickname=ret.nickname)
                 else:
                         return render_template("error.html")
         return render_template("error.html")
 
 @app.route('/square')
 def square():
+        pall = models.Weibo.query.filter_by().all()
+        #length = len(pall)
+        posts = random.sample(pall,9)
+        posts1 = posts[0:3]
+        posts2 = posts[3:6]
+        posts3 = posts[6:9]
         if 'username' in session:
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
-                pall = models.Weibo.query.filter_by().all()
-                #length = len(pall)
-                posts = random.sample(pall,9)
-                posts1 = posts[0:3]
-                posts2 = posts[3:6]
-                posts3 = posts[6:9]
-                return render_template("square.html",posts1=posts1,posts2=posts2,posts3=posts3,nickname=ret.nickname)
-        return render_template("square.html")
+                return render_template("square.html",posts1=posts1,posts2=posts2,posts3=posts3,ret=ret,nickname=ret.nickname)
+        return render_template("square.html",posts1=posts1,posts2=posts2,posts3=posts3)

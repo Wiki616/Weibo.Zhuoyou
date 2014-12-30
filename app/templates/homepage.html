@@ -23,8 +23,11 @@
 								<h4>{{ ret.username}}</h4>
 							</div>
 							<div class="col-md-6">
-								<button type="submit" class="btn btn-primary btn-block" id="follow"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp; Follow</button>
+							<form role = "form" action = "/addfriend" method="post">
+								<input type="text" class="form-control" name = "followname" value="{{ ret.username }}" style="display:none;"> 
+								<button type="submit" class="btn btn-{{color}} btn-block" id="follow" style="display:{{display}};"><span class="glyphicon glyphicon-eye-{{typed}}"></span>&nbsp;&nbsp; {{relation}}</button>
 							</div>
+							</form>
 						</div>
 					</div>	
 					<div class="col-md-11 col-md-offset-1">

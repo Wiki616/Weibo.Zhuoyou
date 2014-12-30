@@ -58,7 +58,7 @@ def welcome():
                         psw = convertmd5(request.form['password'])
                         username = request.form['username']
                         url = "/static/pic/head" + str(ord(username[0]) % 9) + ".jpg"
-                        user = models.User(url = url , username=username , nickname=request.form['nickname'] ,email='null',password=psw)
+                        user = models.User(role = 1 ,url = url , username=username , nickname=request.form['nickname'] ,email='null',password=psw)
                         db.session.add(user)
                         db.session.commit()
                         return render_template("welcome.html",ret=miss,nickname=session['username'])
@@ -74,7 +74,7 @@ def profile():
                 ret = models.User.query.filter_by(username=Username).first()
         #Username = request.cookies.get('username')
         #return render_template("profile.html",nickname=request.form['nickname'])
-                return render_template("profile.html",ret=ret,nickname=ret.nickname,url=ret.url)
+                return render_template("profile.html",ret=ret,nickname=ret.nickname)
         return render_template("error.html")
 
 @app.route('/settings/account')
@@ -145,9 +145,9 @@ def home():
                         db.session.commit()
                 friend = models.Follow.query.filter_by(username=session['username']).all()
                 ans = [session['username']]
-                ans = ans + ['Admin']
+                #ans = ans + ['Admin']
                 for ele in friend:
-                        ans = ans + ele.followname
+                        ans = ans + [ele.followname]
                 posts = []
                 for ele in ans:
                         posts = posts + models.Weibo.query.filter_by(username = ele,wtype="o").all()
@@ -166,7 +166,7 @@ def home():
                         ans = [session['username']]
                         ans = ans + ['Admin']
                         for ele in friend:
-                                ans = ans + ele.followname
+                                ans = ans + [ele.followname]
                         posts = []
                         for ele in ans:
                                 posts = posts + models.Weibo.query.filter_by(username = ele,wtype="o").all()
@@ -180,11 +180,12 @@ def home():
 
 @app.route('/homepage')
 def homepage():
+        if 'username' not in session:
+                return render_template("error.html")
+        username = session['username']
+        miss=models.User.query.filter_by(username=username).first()
         if request.args.get('uid') == 'self':
-                if 'username' in session:
-                        username = session['username']
-                else:
-                        return render_template("error.html")
+                username = session['username']
         else:
                 username = request.args.get('uid')
         posts = models.Weibo.query.filter_by(username=username,wtype="o").all()
@@ -193,8 +194,15 @@ def homepage():
         topic = len(models.Weibo.query.filter_by(username = username).all())
         following = len(models.Follow.query.filter_by(username = username).all())
         ret = models.User.query.filter_by(username=username).first()
-        return render_template("homepage.html",posts=posts,ret = ret , nickname=ret.nickname, follows=follows , topic=topic , following = following)
-
+        if request.args.get('uid') == 'self':
+                return render_template("homepage.html",display="none",posts=posts,ret = ret , nickname=miss.nickname, follows=follows , topic=topic , following = following)
+        else:
+                friend = models.Follow.query.filter_by(username=session['username']).all()
+                for ele in friend:
+                        if ele.followname == username:
+                                return render_template("homepage.html" , display="block" , typed="close" , color="success" , relation = "unfollow", posts=posts , ret = ret , nickname=miss.nickname, follows=follows , topic=topic , following = following)
+                return render_template("homepage.html" , display="block" , typed="open" , color="primary" , relation = "follow", posts=posts , ret = ret , nickname=miss.nickname, follows=follows , topic=topic , following = following)
+                
 @app.route('/message/letter')
 def message():
         if 'username' in session:
@@ -242,3 +250,44 @@ def square():
                 ret = models.User.query.filter_by(username=Username).first()
                 return render_template("square.html",posts1=posts1,posts2=posts2,posts3=posts3,ret=ret,nickname=ret.nickname)
         return render_template("square.html",posts1=posts1,posts2=posts2,posts3=posts3)
+
+@app.route('/addfriend',methods=["POST","GET"])
+def addfriend():
+        if 'username' in session:
+                Username = session['username']
+                followname = request.form['followname']
+                friend = models.Follow.query.filter_by(username = Username).all()
+                for ele in friend:
+                        if ele.followname == followname:
+                                models.Follow.query.filter_by(username = Username , followname=followname).delete()
+                                db.session.commit()
+                                return render_template("temp.html")
+                idname = Username + '%' + followname
+                follow = models.Follow(username = Username , followname = followname , idname = idname)
+                db.session.add(follow)
+                db.session.commit()
+                return render_template("temp.html")
+        return render_template("error.html")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                

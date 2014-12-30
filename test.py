@@ -8,6 +8,9 @@ import hashlib
 import time
 import random
 
-username = 'Wiki_ki'
-url = "/static/pic/head" + str(ord(username[0]) % 9) + ".jpg"
-print url
+username = "Wiki_ki"
+friend = models.Follow.query.filter_by(username='cdfgsv').all()
+print friend
+for ele in friend:
+    if ele.followname == username:
+        print ele.followname

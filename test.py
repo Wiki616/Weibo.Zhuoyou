@@ -1,13 +1,8 @@
-from flask import render_template, flash, session , redirect,request,make_response
-from app import app , db , models
-import httplib
-import urllib , urllib2
-import json
-import uuid
-import hashlib
-import time
-import random
+import HTMLParser
 
-point = 50
-models.User.query.filter_by(username = 'Wiki_ki').update({point : point})
-db.session.commit()
+def decodeHtml(input):
+    h = HTMLParser.HTMLParser()
+    s = h.unescape(input)
+    return s
+
+print decodeHtml('&lt;a href=&#39;/homepage?uid=Wiki_ki&#39;&gt;@Wiki_ki&lt;/a&gt;')

@@ -8,8 +8,14 @@ import uuid
 import hashlib
 import time
 import random
+import HTMLParser
 
 ISOTIMEFORMAT='%Y/%m/%d-%X'
+
+def decodeHtml(input):
+    h = HTMLParser.HTMLParser()
+    s = h.unescape(input)
+    return s
 
 def convertmd5(origin):
         m = hashlib.md5()
@@ -153,6 +159,13 @@ def home():
                         fatherid = "null"
                         number = 0
                         url = ret.url
+                        if content[0] == '@':
+                                res = content[1:]
+                                me = models.User.query.filter_by(username = res).first()
+                                if me != None:
+                                        wtype = "a"
+                                        content = "<a href='/homepage?uid=" + me.username + "'>" + content + "</a>"
+                                        content = decodeHtml(content)
                         weibo = models.Weibo(url = url , username = username , potime = potime , content = content , idweibo = idweibo ,wtype = wtype ,fatherid=fatherid , number=number)
                         db.session.add(weibo)
                         db.session.commit()
@@ -166,6 +179,7 @@ def home():
                 posts = []
                 for ele in ans:
                         posts = posts + models.Weibo.query.filter_by(username = ele,wtype="o").all()
+                        posts = posts + models.Weibo.query.filter_by(username = ele,wtype="a").all()
                 posts = sorted(posts, key = lambda d: d.potime, reverse = True)
                 follows = len(models.Follow.query.filter_by(followname = Username).all())
                 topic = len(models.Weibo.query.filter_by(username = Username).all())
@@ -192,6 +206,7 @@ def home():
                         posts = []
                         for ele in ans:
                                 posts = posts + models.Weibo.query.filter_by(username = ele,wtype="o").all()
+                                posts = posts + models.Weibo.query.filter_by(username = ele,wtype="a").all()
                         posts = sorted(posts, key = lambda d: d.potime, reverse = True)
                         follows = len(models.Follow.query.filter_by(followname = session['username']).all())
                         topic = len(models.Weibo.query.filter_by(username = session['username']).all())
@@ -253,8 +268,9 @@ def system():
         if 'username' in session:
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
+                posts = models.User.query.filter_by().all()
                 if ret.role == 1:
-                        return render_template("system.html",ret=ret,nickname=ret.nickname)
+                        return render_template("system.html",posts=posts,ret=ret,nickname=ret.nickname)
                 else:
                         return render_template("error.html")
         return render_template("error.html")

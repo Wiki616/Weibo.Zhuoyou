@@ -12,7 +12,7 @@
 				<div class="panel-body">
 
 					</br>
-					
+					{% for post in posts %}
 					<div class="row">
 					  <div class="col-sm-6 col-md-4">
 					  
@@ -20,12 +20,12 @@
 							<div class="row">
 								<div class="col-md-3">
 									<!--Profile picture-->
-									<img src="/static/pic/icon.jpg" height="80" width="80"></img>
+									<img src="{{post.url}}" height="80" width="80"></img>
 								</div>
 								<div class="col-md-9">
 									<div class="col-md-4">
 										<!--<img src="/static/pic/icon.jpg" height="16" width="16"></img>-->
-										<a class="text-left" href=""><h5><b>Jubin</b></h5></a>
+										<a class="text-left" href="/homepage?uid={{post.username}}"><h5><b>{{post.username}}</b></h5></a>
 									</div>
 									
 									<div class="col-md-7">
@@ -33,7 +33,7 @@
 									</div>
 									
 									<div class="col-md-12">
-											<label for="friendcard" id="email"><h5><small><span class="glyphicon glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;605276362@qq.com</small></h5></label>
+											<label for="friendcard" id="email"><h5><small><span class="glyphicon glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;{{post.email}}</small></h5></label>
 									</div>
 									
 									<div class="row">
@@ -48,42 +48,9 @@
 						
 					  </div>
 					  
-					  <div class="col-sm-6 col-md-4">
-					  
-						<div class="thumbnail">							
-							<div class="row">
-								<div class="col-md-3">
-									<!--Profile picture-->
-									<img src="/static/pic/icon.jpg" height="80" width="80"></img>
-								</div>
-								<div class="col-md-9">
-									<div class="col-md-4">
-										<!--<img src="/static/pic/icon.jpg" height="16" width="16"></img>-->
-										<a class="text-left" href=""><h5>WangZ</h5></a>
-										<span class="label label-info">Frozen</span>
-
-									</div>
-									
-									<div class="col-md-7">
-
-									</div>
-									
-									<div class="col-md-12">
-											<label for="friendcard" id="email"><h5><small><span class="glyphicon glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;fangchan@wz.cn</small></h5></label>
-									</div>
-									
-									<div class="row">
-										<div class="col-md-8 col-md-offset-3">
-											<button type="submit" class="btn btn-info btn-block" id="Freeze"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;&nbsp; Free</button>
-										</div>
-									</div>
-									
-								</div>
-							</div>	
-						</div>
 						
 					  </div>
-					  
+					{% endfor %}  
 					</div>
 
 				</div>

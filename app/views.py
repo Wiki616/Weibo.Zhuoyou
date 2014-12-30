@@ -117,6 +117,9 @@ def home():
                 for ele in ans:
                         posts = posts + models.Weibo.query.filter_by(username = ele,wtype="o").all()
                 posts = sorted(posts, key = lambda d: d.potime, reverse = True)
+                follows = len(models.Follow.query.filter_by(followname = Username).all())
+                topic = len(models.Weibo.query.filter_by(username = Username).all())
+                following = len(models.Follow.query.filter_by(username = Username).all())
 
                 if request.method == 'POST':
                         username = Username
@@ -129,8 +132,8 @@ def home():
                         weibo = models.Weibo(username = username , potime = potime , content = content , idweibo = idweibo ,wtype = wtype ,fatherid=fatherid , number=number)
                         db.session.add(weibo)
                         db.session.commit()
-                        return render_template("home.html",posts=posts,ret=ret,nickname=ret.nickname) 
-                return render_template("home.html",posts=posts,ret=ret,nickname=ret.nickname)
+                        return render_template("home.html",posts=posts,ret=ret,nickname=ret.nickname,topic=topic,follows=follows,following=following) 
+                return render_template("home.html",posts=posts,ret=ret,nickname=ret.nickname,topic=topic,follows=follows,following=following)
         
         if request.method == 'POST':
                 session['username'] = request.form['username2']
@@ -146,7 +149,10 @@ def home():
                         for ele in ans:
                                 posts = posts + models.Weibo.query.filter_by(username = ele,wtype="o").all()
                         posts = sorted(posts, key = lambda d: d.potime, reverse = True)
-                        return render_template("home.html",posts=posts,ret=miss,nickname=miss.nickname)
+                        follows = len(models.Follow.query.filter_by(followname = session['username']).all())
+                        topic = len(models.Weibo.query.filter_by(username = session['username']).all())
+                        following = len(models.Follow.query.filter_by(username = session['username']).all())
+                        return render_template("home.html",posts=posts,ret=miss,nickname=miss.nickname,topic=topic,follows=follows,following=following)
                 return render_template("error.html")
         return render_template("error.html")
 
@@ -200,8 +206,8 @@ def system():
                 if ret.role == 1:
                         return render_template("system.html",nickname=ret.nickname)
                 else:
-                        return render_template("system.html")
-        return render_template("system.html")
+                        return render_template("error.html")
+        return render_template("error.html")
 
 @app.route('/square')
 def square():

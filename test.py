@@ -8,7 +8,12 @@ import hashlib
 import time
 import random
 
-posts2 = models.Weibo.query.filter_by(content = 'AAA').all()
-for post in posts2:
-    print post.content
-
+ans = [session['username']]
+ans = ans + ['xq']
+for ele in friend:
+    ans = ans + ele.followname
+posts = []
+for ele in ans:
+    posts = posts + models.Weibo.query.filter_by(username = ele,wtype="o").all()
+posts = sorted(posts, key = lambda d: d.potime, reverse = True)
+print posts

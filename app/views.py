@@ -146,8 +146,9 @@ def home():
                         for ele in ans:
                                 posts = posts + models.Weibo.query.filter_by(username = ele,wtype="o").all()
                         posts = sorted(posts, key = lambda d: d.potime, reverse = True)
-                        return render_template("home.html",posts=posts,ret=miss,nickname=ret.nickname)
+                        return render_template("home.html",posts=posts,ret=miss,nickname=miss.nickname)
                 return render_template("error.html")
+        return render_template("error.html")
 
 @app.route('/homepage')
 def homepage():
@@ -214,4 +215,4 @@ def square():
                 posts2 = posts[3:6]
                 posts3 = posts[6:9]
                 return render_template("square.html",posts1=posts1,posts2=posts2,posts3=posts3,nickname=ret.nickname)
-        return render_template("square.html")		
+        return render_template("square.html")

@@ -57,7 +57,7 @@ def welcome():
                 if miss == None:
                         psw = convertmd5(request.form['password'])
                         username = request.form['username']
-                        url = "/static/pic/head" + str(ord(username) % 9) + ".jpg"
+                        url = "/static/pic/head" + str(ord(username[0]) % 9) + ".jpg"
                         user = models.User(url = url , username=username , nickname=request.form['nickname'] ,email='null',password=psw)
                         db.session.add(user)
                         db.session.commit()
@@ -74,7 +74,7 @@ def profile():
                 ret = models.User.query.filter_by(username=Username).first()
         #Username = request.cookies.get('username')
         #return render_template("profile.html",nickname=request.form['nickname'])
-                return render_template("profile.html",ret=ret,nickname=ret.nickname)
+                return render_template("profile.html",ret=ret,nickname=ret.nickname,url=ret.url)
         return render_template("error.html")
 
 @app.route('/settings/account')

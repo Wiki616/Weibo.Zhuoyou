@@ -163,17 +163,15 @@ def homepage():
                         username = session['username']
                 else:
                         return render_template("error.html")
-                posts = models.Weibo.query.filter_by(username=username,wtype="o").all()
-                posts.reverse()
-                ret = models.User.query.filter_by(username=username).first()
-                return render_template("homepage.html",posts=posts,ret = ret , nickname=ret.nickname)
         else:
                 username = request.args.get('uid')
-                posts = models.Weibo.query.filter_by(username=username,wtype="o").all()
-                posts.reverse()
-                ret = models.User.query.filter_by(username=username).first()
-                return render_template("homepage.html",posts=posts,ret = ret, nickname=ret.nickname)
-        return render_template("error.html")
+        posts = models.Weibo.query.filter_by(username=username,wtype="o").all()
+        posts.reverse()
+        follows = len(models.Follow.query.filter_by(followname = username).all())
+        topic = len(models.Weibo.query.filter_by(username = username).all())
+        following = len(models.Follow.query.filter_by(username = username).all())
+        ret = models.User.query.filter_by(username=username).first()
+        return render_template("homepage.html",posts=posts,ret = ret , nickname=ret.nickname, follows=follows , topic=topic , following = following)
 
 @app.route('/message/letter')
 def message():

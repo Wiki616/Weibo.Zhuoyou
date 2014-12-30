@@ -9,7 +9,7 @@ import hashlib
 import time
 import random
 
-ISOTIMEFORMAT='%Y-%m-%d %X'
+ISOTIMEFORMAT='%Y/%m/%d-%X'
 
 def convertmd5(origin):
         m = hashlib.md5()
@@ -110,7 +110,7 @@ def home():
                 ret = models.User.query.filter_by(username=Username).first()
                 friend = models.Follow.query.filter_by(username=session['username']).all()
                 ans = [session['username']]
-                ans = ans + ['xq']
+                ans = ans + ['Admin']
                 for ele in friend:
                         ans = ans + ele.followname
                 posts = []
@@ -142,7 +142,7 @@ def home():
                 if psw == miss.password:
                         friend = models.Follow.query.filter_by(username=session['username']).all()
                         ans = [session['username']]
-                        ans = ans + ['xq']
+                        ans = ans + ['Admin']
                         for ele in friend:
                                 ans = ans + ele.followname
                         posts = []

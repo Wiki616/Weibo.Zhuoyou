@@ -8,9 +8,6 @@ import hashlib
 import time
 import random
 
-username = "Wiki_ki"
-friend = models.Follow.query.filter_by(username='cdfgsv').all()
-print friend
-for ele in friend:
-    if ele.followname == username:
-        print ele.followname
+point = 50
+models.User.query.filter_by(username = 'Wiki_ki').update({point : point})
+db.session.commit()

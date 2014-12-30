@@ -23,18 +23,19 @@
 					</br>
 					
 					<div class="row">
+					  {% for post in posts %}
 					  <div class="col-sm-6 col-md-4">
 					  
 						<div class="thumbnail">							
 							<div class="row">
 								<div class="col-md-3">
 									<!--Profile picture-->
-									<img src="/static/pic/icon.jpg" height="80" width="80"></img>
+									<img src="{{post.url}}" height="80" width="80"></img>
 								</div>
 								<div class="col-md-9">
 									<div class="col-md-4">
 										<!--<img src="/static/pic/icon.jpg" height="16" width="16"></img>-->
-										<label for="friendcard" id="nickname"><b><h5>Jubin</h5></b></label>
+										<a href="/homepage?uid={{post.username}}><label for="friendcard" id="nickname"><b><h5>{{post.nickname}}</h5></b></label></a>
 									</div>
 									
 									<div class="col-md-7">
@@ -42,13 +43,7 @@
 									</div>
 									
 									<div class="col-md-12">
-											<label for="friendcard" id="email"><h5><small><span class="glyphicon glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;605276362@qq.com</small></h5></label>
-									</div>
-									
-									<div class="row">
-										<div class="col-md-8 col-md-offset-3">
-											<button type="submit" class="btn btn-success btn-block" id="Unfollow"><span class="glyphicon glyphicon-eye-close"></span>&nbsp;&nbsp; Unfollow</button>
-										</div>
+											<label for="friendcard" id="email"><h5><small><span class="glyphicon glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;{{post.email}}</small></h5></label>
 									</div>
 									
 								</div>
@@ -56,41 +51,7 @@
 						</div>
 						
 					  </div>
-					  
-					  <div class="col-sm-6 col-md-4">
-					  
-						<div class="thumbnail">							
-							<div class="row">
-								<div class="col-md-3">
-									<!--Profile picture-->
-									<img src="/static/pic/icon.jpg" height="80" width="80"></img>
-								</div>
-								<div class="col-md-9">
-									<div class="col-md-4">
-										<!--<img src="/static/pic/icon.jpg" height="16" width="16"></img>-->
-										<label for="friendcard" id="nickname"><b><h5>Wiki_ki</h5></b></label>
-									</div>
-									
-									<div class="col-md-7">
-
-									</div>
-									
-									<div class="col-md-12">
-											<label for="friendcard" id="email"><h5><small><span class="glyphicon glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;wkzhu11@fudan.edu.cn</small></h5></label>
-									</div>
-									
-									<div class="row">
-										<div class="col-md-8 col-md-offset-3">
-											<button type="submit" class="btn btn-primary btn-block" id="follow"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;&nbsp; Follow</button>
-										</div>
-									</div>
-									
-								</div>
-							</div>	
-						</div>
-						
-					  </div>
-					  
+					  {% endfor %}
 					</div>
 
 				</div>

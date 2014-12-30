@@ -45,7 +45,11 @@ def follows():
         if 'username' in session:
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
-                return render_template("follows.html",ret=ret,nickname=ret.nickname)
+                friend = models.Follow.query.filter_by(followname=Username).all()
+                posts = []
+                for ele in friend:
+                        posts = posts + [models.User.query.filter_by(username=ele.username).first()]
+                return render_template("follows.html",posts=posts,ret=ret,nickname=ret.nickname)
         return render_template("error.html")
 
 @app.route('/welcome',methods=['POST','GET'])
@@ -155,13 +159,18 @@ def home():
                 follows = len(models.Follow.query.filter_by(followname = Username).all())
                 topic = len(models.Weibo.query.filter_by(username = Username).all())
                 following = len(models.Follow.query.filter_by(username = Username).all())
+                point = follows*3 + topic*2 + following*1
+                ret.point = point
+                if ret.point>10000:
+                        ret.lvip = 1
+                db.session.commit()
                 return render_template("home.html" , posts=posts,ret=ret,nickname=ret.nickname,topic=topic,follows=follows,following=following) 
                 
         if request.method == 'POST':
                 session['username'] = request.form['username2']
                 psw = convertmd5(request.form['password2'])
                 miss = models.User.query.filter_by(username=request.form['username2']).first()
-                if psw == miss.password:
+                if psw == miss.password and miss.state == 1:
                         friend = models.Follow.query.filter_by(username=session['username']).all()
                         ans = [session['username']]
                         ans = ans + ['Admin']
@@ -241,10 +250,13 @@ def system():
 def square():
         pall = models.Weibo.query.filter_by().all()
         #length = len(pall)
-        posts = random.sample(pall,9)
-        posts1 = posts[0:3]
-        posts2 = posts[3:6]
-        posts3 = posts[6:9]
+        if len(pall) >= 9:
+                posts = random.sample(pall,9)
+                posts1 = posts[0:3]
+                posts2 = posts[3:6]
+                posts3 = posts[6:9]
+        else:
+                return render_template("error.html")
         if 'username' in session:
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()

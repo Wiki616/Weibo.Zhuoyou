@@ -7,5 +7,8 @@ import uuid
 import hashlib
 import time
 import random
-
-print type(models.User.query.filter_by().first())
+friend = models.Follow.query.filter_by().all()
+ans = ['a']
+for ele in friend:
+    ans = ans + ele.followname
+print ans

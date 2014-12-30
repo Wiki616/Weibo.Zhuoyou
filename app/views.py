@@ -96,6 +96,16 @@ def home():
         if 'username' in session:
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
+                friend = models.Follow.query.filter_by(username=session['username']).all()
+                ans = [session['username']]
+                ans = ans + ['xq']
+                for ele in friend:
+                        ans = ans + ele.followname
+                posts = []
+                for ele in ans:
+                        posts = posts + models.Weibo.query.filter_by(username = ele,wtype="o").all()
+                posts = sorted(posts, key = lambda d: d.potime, reverse = True)
+
                 if request.method == 'POST':
                         username = Username
                         potime = time.strftime(ISOTIMEFORMAT, time.localtime())
@@ -107,24 +117,42 @@ def home():
                         weibo = models.Weibo(username = username , potime = potime , content = content , idweibo = idweibo ,wtype = wtype ,fatherid=fatherid , number=number)
                         db.session.add(weibo)
                         db.session.commit()
-                        return render_template("home.html",nickname=ret.nickname) 
-                return render_template("home.html",nickname=ret.nickname)
+                        return render_template("home.html",posts=posts,ret=ret) 
+                return render_template("home.html",posts=posts,ret=ret)
         if request.method == 'POST':
                 session['username'] = request.form['username2']
                 psw = convertmd5(request.form['password2'])
                 miss = models.User.query.filter_by(username=request.form['username2']).first()
                 if psw == miss.password:
-                        return render_template("home.html",nickname=miss.nickname)
+                        friend = models.Follow.query.filter_by(username=session['username']).all()
+                        ans = [session['username']]
+                        ans = ans + ['xq']
+                        for ele in friend:
+                                ans = ans + ele.followname
+                        posts = []
+                        for ele in ans:
+                                posts = posts + models.Weibo.query.filter_by(username = ele,wtype="o").all()
+                        posts = sorted(posts, key = lambda d: d.potime, reverse = True)
+                        return render_template("home.html",posts=posts,ret=miss)
                 return render_template("error.html")
 
 @app.route('/homepage')
 def homepage():
-        if 'username' in session:
-                username = session['username']
+        if request.args.get('uid') == 'self':
+                if 'username' in session:
+                        username = session['username']
+                else:
+                        return render_template("error.html")
                 posts = models.Weibo.query.filter_by(username=username,wtype="o").all()
                 posts.reverse()
                 ret = models.User.query.filter_by(username=username).first()
-                return render_template("homepage.html",posts=posts,nickname=ret.nickname)
+                return render_template("homepage.html",posts=posts,nickname=session['username'])
+        else:
+                username = request.args.get('uid')
+                posts = models.Weibo.query.filter_by(username=username,wtype="o").all()
+                posts.reverse()
+                ret = models.User.query.filter_by(username=username).first()
+                return render_template("homepage.html",posts=posts,ret = ret, nickname=session['username'])
         return render_template("error.html")				
 @app.route('/message/letter')
 def message():
@@ -155,8 +183,8 @@ def system():
                 if ret.role == 1:
                         return render_template("system.html",nickname=ret.nickname)
                 else:
-                        return render_template("error.html")
-        return render_template("error.html")
+                        return render_template("system.html")
+        return render_template("system.html")
 @app.route('/square')
 def square():
         if 'username' in session:

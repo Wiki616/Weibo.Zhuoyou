@@ -94,7 +94,16 @@ def following():
         if 'username' in session:
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
-                return render_template("following.html",ret=ret,nickname=ret.nickname)
+                friend = models.Follow.query.filter_by(username=Username).all()
+                posts = []
+                for ele in friend:
+                        posts = posts + [models.User.query.filter_by(username=ele.followname).first()]
+                l = len(posts)
+                posts1 = posts[:l/2]
+                n = l/2
+                m = l - n
+                posts2 = posts[l/2:]
+                return render_template("following.html",n = n , m = m ,posts1=posts1,posts2=posts2,ret=ret,nickname=ret.nickname)
         return render_template("error.html")
 
 @app.route('/settings/donate')
@@ -151,7 +160,9 @@ def home():
                 ans = [session['username']]
                 #ans = ans + ['Admin']
                 for ele in friend:
-                        ans = ans + [ele.followname]
+                        tt = models.User.query.filter_by(username=ele.followname).first()
+                        if tt.state == 1:
+                                ans = ans + [ele.followname]
                 posts = []
                 for ele in ans:
                         posts = posts + models.Weibo.query.filter_by(username = ele,wtype="o").all()
@@ -175,7 +186,9 @@ def home():
                         ans = [session['username']]
                         ans = ans + ['Admin']
                         for ele in friend:
-                                ans = ans + [ele.followname]
+                                tt = models.User.query.filter_by(username=ele.followname).first()
+                                if tt.state == 1:
+                                        ans = ans + [ele.followname]
                         posts = []
                         for ele in ans:
                                 posts = posts + models.Weibo.query.filter_by(username = ele,wtype="o").all()
@@ -203,7 +216,7 @@ def homepage():
         topic = len(models.Weibo.query.filter_by(username = username).all())
         following = len(models.Follow.query.filter_by(username = username).all())
         ret = models.User.query.filter_by(username=username).first()
-        if request.args.get('uid') == 'self':
+        if request.args.get('uid') == 'self' or request.args.get('uid') == session['username']:
                 return render_template("homepage.html",display="none",posts=posts,ret = ret , nickname=miss.nickname, follows=follows , topic=topic , following = following)
         else:
                 friend = models.Follow.query.filter_by(username=session['username']).all()
@@ -281,8 +294,25 @@ def addfriend():
                 return render_template("temp.html")
         return render_template("error.html")
 
-
-
+@app.route('/forward')
+def forward():
+        Username = session['username']
+        miss = models.User.query.filter_by(username = Username).first()
+        idweibo = request.args.get('id')
+        ret = models.Weibo.query.filter_by(idweibo = idweibo).first()
+        username = ret.username
+        potime = time.strftime(ISOTIMEFORMAT, time.localtime())
+        content = "FW : "+ ret.username + " " + ret.content
+        idweibo = Username + potime + str(len(content))
+        wtype = "o"
+        fatherid = "null"
+        number = 0
+        url = miss.url
+        weibo = models.Weibo(url = url , username = username , potime = potime , content = content , idweibo = idweibo ,wtype = wtype ,fatherid=fatherid , number=number)
+        db.session.add(weibo)
+        db.session.commit()
+        return "forward ok"
+        return render_template("error.html")
 
 
 

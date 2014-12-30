@@ -32,7 +32,8 @@ def result():
         if request.method == 'POST':
                 query = request.form['query']
                 posts = models.User.query.filter_by(username = query).all()
-                return render_template("result.html" , posts = posts)
+                posts2 = models.Weibo.query.filter_by(content = query).all()
+                return render_template("result.html" , posts = posts , posts2 = posts2)
         return render_template("result.html")
 
 @app.route('/settings/follows')

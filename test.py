@@ -8,8 +8,7 @@ import hashlib
 import time
 import random
 
-pall = models.Weibo.query.filter_by().all()
-posts = random.sample(pall,9)
-posts1 = post[0:3]
-posts2 = post[3:6]
-posts3 = post[6:9]
+posts2 = models.Weibo.query.filter_by(content = 'AAA').all()
+for post in posts2:
+    print post.content
+

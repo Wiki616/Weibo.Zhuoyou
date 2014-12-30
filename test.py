@@ -7,8 +7,9 @@ import uuid
 import hashlib
 import time
 import random
-friend = models.Follow.query.filter_by().all()
-ans = ['a']
-for ele in friend:
-    ans = ans + ele.followname
-print ans
+
+pall = models.Weibo.query.filter_by().all()
+posts = random.sample(pall,9)
+posts1 = post[0:3]
+posts2 = post[3:6]
+posts3 = post[6:9]

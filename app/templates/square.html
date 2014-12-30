@@ -21,7 +21,91 @@
 
 					</br>
 					<div class="row">
-						{% for post in posts %}
+						{% for post in posts1 %}
+						<div class="col-sm-6 col-md-4">				  
+							<div class="thumbnail">							
+								<div class = "row">
+									<div class="col-md-2">
+										<img src="/static/pic/icon.jpg" height="48" width="48" href=""></img>					
+									</div>
+									<div class="col-md-10">
+										<div class="row">
+											<div class="col-md-6">
+												<a class="text-left" href=""><h4><b>{{post.username}}</b></h4></a>
+											</div>
+											<div class="col-md-3 col-md-offset-3">
+												<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<label ><h4>{{post.content}}</h4></label>
+											</div>
+										</div>
+									</div>
+									
+									<div class="col-md-12">
+										<p class="text-center"><h5><small>{{post.potime}}</small></h5></p>
+									</div>
+									<div class="col-md-4">
+										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
+									</div>
+									<div class="col-md-4">
+										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Commit!</b></h5></a>
+									</div>
+									<div class="col-md-4">
+										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-star-empty"></span> Collect!</b></h5></a>
+									</div>
+								</div>	
+							</div>				
+						 </div>
+						 {% endfor %}
+					</div>
+					
+					<div class="row">
+						{% for post in posts2 %}
+						<div class="col-sm-6 col-md-4">				  
+							<div class="thumbnail">							
+								<div class = "row">
+									<div class="col-md-2">
+										<img src="/static/pic/icon.jpg" height="48" width="48" href=""></img>					
+									</div>
+									<div class="col-md-10">
+										<div class="row">
+											<div class="col-md-6">
+												<a class="text-left" href=""><h4><b>{{post.username}}</b></h4></a>
+											</div>
+											<div class="col-md-3 col-md-offset-3">
+												<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<label ><h4>{{post.content}}</h4></label>
+											</div>
+										</div>
+									</div>
+									
+									<div class="col-md-12">
+										<p class="text-center"><h5><small>{{post.potime}}</small></h5></p>
+									</div>
+									<div class="col-md-4">
+										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
+									</div>
+									<div class="col-md-4">
+										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Commit!</b></h5></a>
+									</div>
+									<div class="col-md-4">
+										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-star-empty"></span> Collect!</b></h5></a>
+									</div>
+								</div>	
+							</div>				
+						 </div>
+						 {% endfor %}
+					</div>
+					
+					<div class="row">
+						{% for post in posts3 %}
 						<div class="col-sm-6 col-md-4">				  
 							<div class="thumbnail">							
 								<div class = "row">

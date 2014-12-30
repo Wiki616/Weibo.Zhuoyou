@@ -12,30 +12,30 @@
 				<div class="row">
 					<div class="col-md-11 col-md-offset-1">
 						<!--Profile picture-->
-						<h3>{{ nickname }}</h3>
-						<h4>MZX {{username}}</h4>
+						<h3>{{ ret.nickname }}</h3>
+						<h4> {{ ret.username}}</h4>
 					</div>	
 					<div class="col-md-11 col-md-offset-1">
-						<label for="friendcard" id="email"><h5><small><span class="glyphicon glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;wkzhu11@fudan.edu.cn</small></h5></label>								
+						<label for="friendcard" id="email"><h5><small><span class="glyphicon glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;{{ ret.email }}</small></h5></label>								
 					</div>
 				</div>
 				<div class="row">
 
 					<div class="col-md-3  col-md-offset-1">
 						<div class="col-md-12">
-							<a class="text-center" id="Follownum" href=""><h3>2</h3></a>
+							<a class="text-center" id="Follownum" href="/settings/follows"><h3>2</h3></a>
 						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="col-md-12">
-							<a class="text-center" id="Topicnum"  href=""><h3>1</h3></a>
+							<a class="text-center" id="Topicnum"  href="#"><h3>1</h3></a>
 						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="col-md-12">
-							<a class="text-center" id="Followingnum"  href=""><h3>3</h3></a>
+							<a class="text-center" id="Followingnum"  href="/settings/following"><h3>3</h3></a>
 						</div>
-					</div>							
+					</div>				
 				</div>
 				<div class="row">
 					<div class="col-md-3  col-md-offset-1">

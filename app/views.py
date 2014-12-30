@@ -21,10 +21,12 @@ def convertmd5(origin):
 @app.route('/index')
 def index():
         return render_template("index.html")
+
 @app.route('/logout')
 def logout():
         session.pop('username',None)
         return render_template("index.html")
+
 @app.route('/result',methods=['POST','GET'])
 def result():
         if request.method == 'POST':
@@ -32,9 +34,11 @@ def result():
                 posts = models.User.query.filter_by(username = query).all()
                 return render_template("result.html" , posts = posts)
         return render_template("result.html")
+
 @app.route('/settings/follows')
 def follows():
         return render_template("follows.html")
+
 @app.route('/welcome',methods=['POST','GET'])
 def welcome():
         if request.method == 'POST':
@@ -49,6 +53,7 @@ def welcome():
                         return render_template("welcome.html",nickname=session['username'])
                 return render_template("error.html")
         return render_template("welcome.html")
+
 @app.route('/settings',methods=['POST','GET'])
 @app.route('/settings/profile',methods=['POST','GET'])
 def profile():
@@ -57,17 +62,21 @@ def profile():
         ret = models.User.query.filter_by(username=session['username']).first()
         #return render_template("profile.html",nickname=request.form['nickname'])
         return render_template("profile.html",nickname=ret.nickname)
+
 @app.route('/settings/account')
 def account():
         ret = models.User.query.filter_by(username=session['username']).first() 
         return render_template("account.html",nickname=ret.nickname)
+
 @app.route('/settings/following')
 def following():
         ret = models.User.query.filter_by(username=session['username']).first()
         return render_template("following.html",nickname=ret.nickname)
+
 @app.route('/settings/donate')
 def donate():
         return render_template("donate.html")
+
 @app.route('/update1',methods=['POST','GET'])
 def update1():
         if request.method == 'POST':
@@ -78,6 +87,7 @@ def update1():
                 db.session.commit()
                 return render_template("update.html")
         return render_template("error.html")
+
 @app.route('/update2',methods=['POST','GET'])
 def update2():
         if request.method == 'POST':
@@ -91,6 +101,7 @@ def update2():
                         return render_template("update.html")
                 return render_template("error.html")
         return render_template("error.html")
+
 @app.route('/home',methods=['POST','GET'])
 def home():
         if 'username' in session:
@@ -117,8 +128,9 @@ def home():
                         weibo = models.Weibo(username = username , potime = potime , content = content , idweibo = idweibo ,wtype = wtype ,fatherid=fatherid , number=number)
                         db.session.add(weibo)
                         db.session.commit()
-                        return render_template("home.html",posts=posts,ret=ret) 
-                return render_template("home.html",posts=posts,ret=ret)
+                        return render_template("home.html",posts=posts,ret=ret,nickname=ret.nickname) 
+                return render_template("home.html",posts=posts,ret=ret,nickname=ret.nickname)
+        
         if request.method == 'POST':
                 session['username'] = request.form['username2']
                 psw = convertmd5(request.form['password2'])
@@ -133,7 +145,7 @@ def home():
                         for ele in ans:
                                 posts = posts + models.Weibo.query.filter_by(username = ele,wtype="o").all()
                         posts = sorted(posts, key = lambda d: d.potime, reverse = True)
-                        return render_template("home.html",posts=posts,ret=miss)
+                        return render_template("home.html",posts=posts,ret=miss,nickname=ret.nickname)
                 return render_template("error.html")
 
 @app.route('/homepage')
@@ -146,14 +158,15 @@ def homepage():
                 posts = models.Weibo.query.filter_by(username=username,wtype="o").all()
                 posts.reverse()
                 ret = models.User.query.filter_by(username=username).first()
-                return render_template("homepage.html",posts=posts,nickname=session['username'])
+                return render_template("homepage.html",posts=posts,ret = ret , nickname=ret.nickname)
         else:
                 username = request.args.get('uid')
                 posts = models.Weibo.query.filter_by(username=username,wtype="o").all()
                 posts.reverse()
                 ret = models.User.query.filter_by(username=username).first()
-                return render_template("homepage.html",posts=posts,ret = ret, nickname=session['username'])
-        return render_template("error.html")				
+                return render_template("homepage.html",posts=posts,ret = ret, nickname=ret.nickname)
+        return render_template("error.html")
+
 @app.route('/message/letter')
 def message():
         if 'username' in session:
@@ -161,13 +174,15 @@ def message():
                 ret = models.User.query.filter_by(username=Username).first()
                 return render_template("letter.html",nickname=ret.nickname)
         return render_template("error.html")
+
 @app.route('/message/atme')
 def atme():
         if 'username' in session:
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
                 return render_template("atme.html",nickname=ret.nickname)
-        return render_template("error.html")			
+        return render_template("error.html")
+
 @app.route('/message/commit')
 def commit():
         if 'username' in session:
@@ -185,6 +200,7 @@ def system():
                 else:
                         return render_template("system.html")
         return render_template("system.html")
+
 @app.route('/square')
 def square():
         if 'username' in session:
@@ -193,5 +209,8 @@ def square():
                 pall = models.Weibo.query.filter_by().all()
                 #length = len(pall)
                 posts = random.sample(pall,9)
-                return render_template("square.html",posts=posts,nickname=ret.nickname)
+                posts1 = posts[0:3]
+                posts2 = posts[3:6]
+                posts3 = posts[6:9]
+                return render_template("square.html",posts1=posts1,posts2=posts2,posts3=posts3,nickname=ret.nickname)
         return render_template("square.html")		

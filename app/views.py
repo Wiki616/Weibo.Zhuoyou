@@ -58,7 +58,7 @@ def welcome():
                         psw = convertmd5(request.form['password'])
                         username = request.form['username']
                         url = "/static/pic/head" + str(ord(username) % 9) + ".jpg"
-                        user = models.User(role = 1, url = url , username=username , nickname=request.form['nickname'] ,email='null',password=psw)
+                        user = models.User(url = url , username=username , nickname=request.form['nickname'] ,email='null',password=psw)
                         db.session.add(user)
                         db.session.commit()
                         return render_template("welcome.html",ret=miss,nickname=session['username'])

@@ -48,7 +48,9 @@ def welcome():
                 miss = models.User.query.filter_by(username=request.form['username']).first()
                 if miss == None:
                         psw = convertmd5(request.form['password'])
-                        user = models.User(username=request.form['username'] , nickname=request.form['nickname'] ,email='null',password=psw)
+                        username = request.form['username']
+                        url = "/static/pic/head" + chr(ord(username[0]) % 9) + ".jpg"
+                        user = models.User(role = 1, url = url , username=username , nickname=request.form['nickname'] ,email='null',password=psw)
                         db.session.add(user)
                         db.session.commit()
                         return render_template("welcome.html",nickname=session['username'])

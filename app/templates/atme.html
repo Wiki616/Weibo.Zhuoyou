@@ -20,6 +20,7 @@
 					</br>
 					
 					<div class = "row">
+					{% for post in posts %}
 					<div class="col-md-12">
 						<div class="thumbnail">	
 							<div class = "row">
@@ -29,7 +30,7 @@
 								<div class="col-md-11">
 									<div class="row">
 										<div class="col-md-6">
-											<a class="text-left" href=""><h4><b>wiki_ki</b></h4></a>
+											<a class="text-left" href="/homepage?uid={{post.susername}}"><h4><b>{{post.susername}}</b></h4></a>
 										</div>
 										<div class="col-md-3 col-md-offset-3">
 											<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -37,14 +38,11 @@
 									</div>
 									<div class="row">
 										<div class="col-md-12">
-											<label ><h4>Hello,world!@Jubin</h4></label>
+											<label ><h4>@{{post.rusername}}</h4></label>
 										</div>
 									</div>
 								</div>
 								
-								<div class="col-md-3">
-									<p class="text-center"><h5><small>2014-10-28 10:19</small></h5></p>
-								</div>
 								<div class="col-md-2 col-md-offset-3">
 									<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-new-window"></span> Forward!</b></h5></a>
 								</div>
@@ -57,6 +55,7 @@
 							</div>
 						</div>
 					</div>
+					{% endfor %}
 				</div>
 
 				</div>

@@ -164,8 +164,14 @@ def home():
                                 me = models.User.query.filter_by(username = res).first()
                                 if me != None:
                                         wtype = "a"
-                                        content = "<a href='/homepage?uid=" + me.username + "'>" + content + "</a>"
-                                        content = decodeHtml(content)
+                                        #content = "<a href='/homepage?uid=" + me.username + "'>" + content + "</a>"
+                                        #content = decodeHtml(content)
+                                        imessage = idweibo+me.username
+                                        susername = username
+                                        rusername = me.username
+                                        message = models.Message(imessage=imessage,idweibo=idweibo,susername=susername,url=url,rusername=rusername)
+                                        db.session.add(message)
+                                        db.session.commit()
                         weibo = models.Weibo(url = url , username = username , potime = potime , content = content , idweibo = idweibo ,wtype = wtype ,fatherid=fatherid , number=number)
                         db.session.add(weibo)
                         db.session.commit()
@@ -245,7 +251,14 @@ def message():
         if 'username' in session:
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
-                return render_template("letter.html",ret=ret,nickname=ret.nickname)
+                ans = models.Message.query.filter_by(rusername=Username).all()
+                posts = []
+                for ele in ans:
+                    Id = ele.idweibo
+                    c = models.Weibo.query.filter_by(idweibo = Id).first()
+                    if c.wtype == "l":
+                        posts = posts + [c]
+                return render_template("letter.html",posts = posts , ret=ret,nickname=ret.nickname)
         return render_template("error.html")
 
 @app.route('/message/atme')
@@ -253,7 +266,14 @@ def atme():
         if 'username' in session:
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
-                return render_template("atme.html",ret=ret,nickname=ret.nickname)
+                ans = models.Message.query.filter_by(rusername=Username).all()
+                posts = []
+                for ele in ans:
+                    Id = ele.idweibo
+                    c = models.Weibo.query.filter_by(idweibo = Id).first()
+                    if c.wtype == "a":
+                        posts = posts + [ele]
+                return render_template("atme.html",posts = posts , ret=ret,nickname=ret.nickname)
         return render_template("error.html")
 
 @app.route('/message/commit')
@@ -261,7 +281,15 @@ def commit():
         if 'username' in session:
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
-                return render_template("commit.html",ret=ret,nickname=ret.nickname)
+                ans = models.Message.query.filter_by(rusername=Username).all()
+                posts = []
+                for ele in ans:
+                    Id = ele.idweibo
+                    c = models.Weibo.query.filter_by(idweibo = Id).first()
+                    if c.wtype == "r":
+                        posts = posts + [c]
+                return render_template("commit.html",posts = posts , ret=ret,nickname=ret.nickname)
+        return render_template("error.html")
 
 @app.route('/system')
 def system():

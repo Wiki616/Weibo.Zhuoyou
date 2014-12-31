@@ -147,6 +147,10 @@ def update2():
 
 @app.route('/home',methods=['POST','GET'])
 def home():
+        """
+
+        :rtype : object
+        """
         if 'username' in session:
                 Username = session['username']
                 ret = models.User.query.filter_by(username=Username).first()
@@ -375,12 +379,68 @@ def sendmessage():
         weibo = models.Weibo(url = url , username = susername , potime = potime ,content = content , idweibo = idweibo, wtype = wtype , fatherid = fatherid ,number = number)
         db.session.add(weibo)
         db.session.commit()
+<<<<<<< HEAD
         imessage = idweibo+susername
         message = models.Message(susername = susername , rusername = rusername , idweibo = idweibo , imessage = imessage)
         db.session.add(message)
         db.session.commit()
         return render_template("sendmessage.html",ret=ret,nickname=ret.nickname)
     return render_template("sendmessage.html",ret=ret,nickname = ret.nickname)
+=======
+        username = session['username']
+        ret = models.User.query.filter_by(username=Username).first()
+        if request.method == 'POST':
+            username = Username
+            potime = time.strftime(ISOTIMEFORMAT, time.localtime())
+            content = request.form['content']
+            idweibo = Username + potime + str(len(content))
+            wtype = "o"
+            fatherid = "null"
+            number = 0
+            url = ret.url
+            if content[0] == '@':
+                res = content[1:]
+                me = models.User.query.filter_by(username = res).first()
+                if me != None:
+                    wtype = "a"
+                    #content = "<a href='/homepage?uid=" + me.username + "'>" + content + "</a>"
+                    #content = decodeHtml(content)
+                    imessage = idweibo+me.username
+                    susername = username
+                    rusername = me.username
+                    message = models.Message(imessage=imessage,idweibo=idweibo,susername=susername,url=url,rusername=rusername)
+                    db.session.add(message)
+                    db.session.commit()
+            weibo = models.Weibo(url = url , username = username , potime = potime , content = content , idweibo = idweibo ,wtype = wtype ,fatherid=fatherid , number=number)
+            db.session.add(weibo)
+            db.session.commit()
+        friend = models.Follow.query.filter_by(username=session['username']).all()
+        ans = [session['username']]
+        #ans = ans + ['Admin']
+        for ele in friend:
+            tt = models.User.query.filter_by(username=ele.followname).first()
+            if tt.state == 1:
+                ans = ans + [ele.followname]
+        posts = []
+        for ele in ans:
+            posts = posts + models.Weibo.query.filter_by(username = ele,wtype="o").all()
+            posts = posts + models.Weibo.query.filter_by(username = ele,wtype="a").all()
+        posts = sorted(posts, key = lambda d: d.potime, reverse = True)
+        follows = len(models.Follow.query.filter_by(followname = Username).all())
+        topic = len(models.Weibo.query.filter_by(username = Username).all())
+        following = len(models.Follow.query.filter_by(username = Username).all())
+        point = follows*3 + topic*2 + following*1
+        ret.point = point
+        if ret.point>10000:
+            ret.lvip = 1
+        db.session.commit()
+        return render_template("home.html" , posts=posts,ret=ret,nickname=ret.nickname,topic=topic,follows=follows,following=following)
+        # return "forward ok"
+        # return render_template("error.html")
+
+
+
+>>>>>>> 1e2c75c0b500b336bd6fe2be4fc57bc92dfa8924
 
 
 

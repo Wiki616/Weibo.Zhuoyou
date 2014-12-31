@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-md-9 col-md-offset-2">
+			<div class="panel panel-success">
+				<div class="panel-heading">Send message</div>
+				<div class="panel-body">
+					
+					</br>
+					
+					<form role = "form" action = "/sendmessage" method="post">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<div class="input-group">
+									<div class="input-group-addon"><span class="glyphicon glyphicon-user"></span> 发送人</div>
+									<input class="form-control" name = "susername" type="text" value = {{ret.username}} placeholder="{{ret.nickname}}">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 col-md-offset-1">
+							<div class="form-group">
+								<div class="input-group">
+									<div class="input-group-addon"><span class="glyphicon glyphicon-th-large"></span> 收信人</div>
+									<input class="form-control" name = "rusername" type="text" placeholder="Enter username">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2 col-md-offset-3">
+								<button class="btn btn-info btn-block" type="submit" "><span class="glyphicon glyphicon-envelope"></span> Send!</span></button>
+						</div>
+					</div>
+					<div class="row"> 
+						<div class="col-md-12">
+							<textarea class="form-control" rows="4" id = "weibo"  name="content"></textarea>
+						</div>
+					</div>
+					</form>
+				</div>
+			</div>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}

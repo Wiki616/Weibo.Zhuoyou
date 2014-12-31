@@ -14,14 +14,14 @@
 						<!--Profile picture-->
 						<div class="row">
 							<div class="col-md-5">
-								<h3>{{ ret.nickname }}</h3>
+								<h3>{{ ret.nickname }}&nbsp;<small><span class="label label-warning">Credit&nbsp; <span class="badge">{{ ret.point}}</span></span></small></h3>
 							</div>
 							
 						</div>
 						<div class="row">
 							<div class="col-md-5">
 								<h4>{{ ret.username}}</h4>
-								<h4>{{ ret.point}} </h4>
+								<!--<h4>{{ ret.point}} </h4>-->
 							</div>
 							<div class="col-md-6">
 							<form role = "form" action = "/addfriend" method="post">
@@ -32,7 +32,7 @@
 						</div>
 					</div>	
 					<div class="col-md-11 col-md-offset-1">
-						<label for="friendcard" id="email"><h5><small><span class="glyphicon glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;{{ ret.email }}</small></h5></label>								
+						<a for="friendcard" id="email" href="/sendmessage"><h5><small><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;{{ ret.email }}</small></h5></a>
 					</div>
 				</div>
 				<div class="row">

@@ -12,12 +12,12 @@
 				<div class="row">
 					<div class="col-md-11 col-md-offset-1">
 						<!--Profile picture-->
-						<h3>{{ ret.nickname }}</h3>
+						<h3>{{ ret.nickname }}&nbsp;<small><span class="label label-warning">Credit&nbsp; <span class="badge">{{ ret.point}}</span></span></small></h3>							
 						<h4>{{ ret.username}}</h4>
-						<h4>{{ ret.point}} </h4>
+						<!--<h4>{{ ret.point}} </h4>-->
 					</div>	
 					<div class="col-md-11 col-md-offset-1">
-						<label for="friendcard" id="email"><h5><small><span class="glyphicon glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;{{ ret.email }}</small></h5></label>								
+						<a href = "/sendmessage"><label for="friendcard" id="email"><h5><small><span class="glyphicon glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;{{ ret.email }}</small></h5></label>	</a>							
 					</div>
 				</div>
 				<div class="row">
@@ -115,7 +115,7 @@
 									</div>
 									<div class="row">
 										<div class="col-md-12">
-											<label><h4> {{post.content}} </h4></label>
+											<label class="weibocontent"><h4> {{post.content}} </h4></label>
 										</div>
 									</div>
 								</div>
@@ -134,6 +134,50 @@
 								</div>
 							</div>
 						
+							<div class="thumbnail" style="display:none">
+							
+								<div class = "row">							
+									<div class="col-md-1">
+										<img src="/static/pic/icon.jpg" height="48" width="48" href=""></img>					
+									</div>
+									<div class="col-md-11">
+										<div class="row">
+											<div class="col-md-12">
+												<p class="navbar-text"><a href="/home" class="navbar-link"><b>Jubin</b></a> reward <a href="/home" class="navbar-link"><b>Wiki_ki</b></a>:it's a reward for test!</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<p class="text-center"><h5><small> 2014-10-28 10:22</small></h5></p>
+									</div>
+									<div class="col-md-2">
+										<p class="text-center"><h5><small>Floor 1</small></h5></p>
+									</div>
+									<div class="col-md-2 col-md-offset-5">
+										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Reward!</b></h5></a>
+									</div>							
+								</div>
+								<ul class="nav nav-tabs" role="tablist">
+									<li role="presentation"><a href="#"></a></li>
+								</ul>							
+								
+								<div class = "row">							
+									<div class="col-md-1">
+										<img src="{{ ret.url }}" height="48" width="48" href=""></img>					
+									</div>
+									<div class="col-md-11">
+										<div class="row">
+											<div class="col-md-12">
+												<input class="form-control" id="rewardtext" placeholder="Reward {{ ret.username}}:">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2 col-md-offset-10">
+										<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Reward!</b></h5></a>
+									</div>							
+								</div>
+								
+							</div>
 						</div>
 					</div>
 				</div>

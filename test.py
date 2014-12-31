@@ -1,8 +1,28 @@
+# -*- coding:utf-8 -*-
+from flask import render_template, flash, session , redirect,request,make_response
+from app import app , db , models
+import httplib
+import urllib , urllib2
+import json
+import uuid
+import hashlib
+import time
+import random
 import HTMLParser
 
-def decodeHtml(input):
-    h = HTMLParser.HTMLParser()
-    s = h.unescape(input)
-    return s
-
-print decodeHtml('&lt;a href=&#39;/homepage?uid=Wiki_ki&#39;&gt;@Wiki_ki&lt;/a&gt;')
+susername = 'dddd'
+rusername = 'Wiki_ki'
+content = 'dsggsgdsghshsshsh'
+potime = time.strftime(ISOTIMEFORMAT, time.localtime())
+idweibo = ssername + potime + str(len(content))
+wtype = "l"
+fatherid = "null"
+number = 0
+url = ret.url
+weibo = models.Weibo(url = url , username = susername , potime = potime ,content = content , idweibo = idweibo, wtype = wtype , fatherid = fatherid ,number = number)
+db.session.add(weibo)
+db.session.commit()
+imessage = idweibo+susername
+message = models.Message(susername = susername , rusername = rusername , idweibo = idweibo , imessage = imessage)
+db.session.add(message)
+db.session.commit()

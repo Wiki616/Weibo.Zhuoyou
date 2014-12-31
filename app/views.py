@@ -164,8 +164,8 @@ def home():
                                 me = models.User.query.filter_by(username = res).first()
                                 if me != None:
                                         wtype = "a"
-                                        #content = "<a href='/homepage?uid=" + me.username + "'>" + content + "</a>"
-                                        #content = decodeHtml(content)
+                                        content = "<a href='/homepage?uid=" + me.username + "'>" + content + "</a>"
+                                        content = decodeHtml(content)
                                         imessage = idweibo+me.username
                                         susername = username
                                         rusername = me.username
@@ -340,26 +340,47 @@ def addfriend():
 
 @app.route('/forward')
 def forward():
-        Username = session['username']
-        miss = models.User.query.filter_by(username = Username).first()
-        idweibo = request.args.get('id')
-        ret = models.Weibo.query.filter_by(idweibo = idweibo).first()
-        username = ret.username
+    Username = session['username']
+    miss = models.User.query.filter_by(username = Username).first()
+    idweibo = request.args.get('id')
+    ret = models.Weibo.query.filter_by(idweibo = idweibo).first()
+    username = ret.username
+    potime = time.strftime(ISOTIMEFORMAT, time.localtime())
+    content = "FW : "+ ret.username + " " + ret.content
+    idweibo = Username + potime + str(len(content))
+    wtype = "o"
+    fatherid = "null"
+    number = 0
+    url = miss.url
+    weibo = models.Weibo(url = url , username = username , potime = potime , content = content , idweibo = idweibo ,wtype = wtype ,fatherid=fatherid , number=number)
+    db.session.add(weibo)
+    db.session.commit()
+    return "forward ok"
+    return render_template("error.html")
+
+
+@app.route('/sendmessage',methods=["POST","GET"])
+def sendmessage():
+    ret = models.User.query.filter_by(username = session['username']).first()
+    if request.method == "POST":
+        susername = session['username']
+        rusername = request.form['rusername']
+        content = request.form['content']
         potime = time.strftime(ISOTIMEFORMAT, time.localtime())
-        content = "FW : "+ ret.username + " " + ret.content
-        idweibo = Username + potime + str(len(content))
-        wtype = "o"
+        idweibo = susername + potime + str(len(content))
+        wtype = "l"
         fatherid = "null"
         number = 0
-        url = miss.url
-        weibo = models.Weibo(url = url , username = username , potime = potime , content = content , idweibo = idweibo ,wtype = wtype ,fatherid=fatherid , number=number)
+        url = ret.url
+        weibo = models.Weibo(url = url , username = susername , potime = potime ,content = content , idweibo = idweibo, wtype = wtype , fatherid = fatherid ,number = number)
         db.session.add(weibo)
         db.session.commit()
-        return "forward ok"
-        return render_template("error.html")
-
-
-
+        imessage = idweibo+susername
+        message = models.Message(susername = susername , rusername = rusername , idweibo = idweibo , imessage = imessage)
+        db.session.add(message)
+        db.session.commit()
+        return render_template("sendmessage.html",ret=ret,nickname=ret.nickname)
+    return render_template("sendmessage.html",ret=ret,nickname = ret.nickname)
 
 
 

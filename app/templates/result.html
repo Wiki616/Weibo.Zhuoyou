@@ -55,9 +55,9 @@
 							<div class="col-md-2">
 								<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-pencil"></span> Commit!</b></h5></a>
 							</div>
-							<div class="col-md-2">
-								<a class="text-left" href=""><h5><b><span class="glyphicon glyphicon-star-empty"></span> Collect!</b></h5></a>
-							</div>
+                            <div class="col-md-2">
+                                <a class="text-left" href="#"><h5><b onclick="javascript:if(document.getElementById('{{post.potime}}').className == 'glyphicon glyphicon-star-empty'){document.getElementById('{{post.potime}}').className = 'glyphicon glyphicon-star'}else{document.getElementById('{{post.potime}}').className = 'glyphicon glyphicon-star-empty'} ; return false" ><span id = "{{post.potime}}" class="glyphicon glyphicon-star-empty"></span> Collect!</b></h5></a>
+                            </div>
 						</div>
 						
 					</div>

@@ -38,7 +38,7 @@
 									
 									<div class="row">
 										<div class="col-md-8 col-md-offset-3">
-											<button type="submit" class="btn btn-warning btn-block" id="Freeze"><span class="glyphicon glyphicon-remove-sign"></span>&nbsp;&nbsp; Freeze</button>
+											<button type="submit" class="btn-warning" id = "{{post.username}}+{{post.nickname}}" onclick="javascript:if(document.getElementById('{{post.username}}').className == 'glyphicon glyphicon-remove-sign'){document.getElementById('{{post.username}}').className = 'glyphicon glyphicon-ok-sign';document.getElementById('{{post.username}}+{{post.nickname}}').className = 'btn-success'; document.getElementById('{{post.username}}').innerText = '&nbsp; Free'} else{document.getElementById('{{post.username}}').className = 'glyphicon glyphicon-remove-sign';document.getElementById('{{post.username}}').innerText = '&nbsp; Freeze';document.getElementById('{{post.username}}+{{post.nickname}}').className = 'btn-warning'}"><span id = "{{post.username}}"class="glyphicon glyphicon-remove-sign">&nbsp; Freeze</span></button>
 										</div>
 									</div>
 									
